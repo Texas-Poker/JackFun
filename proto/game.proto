@@ -1,0 +1,8 @@
+syntax = "proto3";
+package pb_game;
+option go_package = "server/pb/pb_game";
+
+message SyncGateLinkState {
+  string  ErrorCode = 1;
+}
+
