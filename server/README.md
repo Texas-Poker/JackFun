@@ -1,5 +1,5 @@
 ## protobuf编译
-*结构图如下
+*目录结构图如下
 ``` graph
 jack_fun
 │

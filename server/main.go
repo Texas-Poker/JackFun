@@ -11,28 +11,37 @@ import (
 	"github.com/topfreegames/pitaya/modules"
 	"github.com/topfreegames/pitaya/serialize/protobuf"
 	"server/constants"
-	"server/lobby_server"
 	"server/redis"
-	"strings"
+	"server/server_http"
+	"server/server_lobby"
 )
 
-
 func configureLobby() {
-	lobbyServer := lobby_server.NewLobbyServer()
-	pitaya.Register(lobbyServer,
-		component.WithName("lobby_server"),
-		component.WithNameFunc(strings.ToLower),
+	componentLobby := server_lobby.NewComponentLobby()
+	pitaya.Register(componentLobby,
+		component.WithName("component_lobby"),
 	)
 
-	pitaya.RegisterRemote(lobbyServer,
-		component.WithName("lobby_server"),
-		component.WithNameFunc(strings.ToLower),
+	pitaya.RegisterRemote(componentLobby,
+		component.WithName("component_lobby"),
+	)
+}
+
+func configureHttpSever() {
+	componentHttp := server_http.NewComponentHttp()
+	pitaya.Register(componentHttp,
+		component.WithName("component_http"),
+	)
+
+	pitaya.RegisterRemote(componentHttp,
+		component.WithName("component_http"),
 	)
 }
 
 func configureFrontend(port int) {
 	tcp := acceptor.NewTCPAcceptor(fmt.Sprintf(":%d", port))
 	pitaya.AddAcceptor(tcp)
+
 }
 
 func main() {
@@ -46,29 +55,32 @@ func main() {
 	pitaya.SetSerializer(protobuf.NewSerializer())
 
 	switch *svType {
-	case constants.SvTypeConnector:
+	case jcak_constants.SvTypeConnector:
 		configureFrontend(*port)
 		break
-	case constants.SvTypeLobby:
+	case jcak_constants.SvTypeLobby:
 		configureLobby()
 		break
-	case constants.SvTypeGame:
+	case jcak_constants.SvTypeGame:
 		//configureGame()
 		break
-	case constants.SvTypeWorld:
+	case jcak_constants.SvTypeWorld:
 		//configureWorld()
 		break
+	case jcak_constants.SvTypeHttp:
+		configureHttpSever()
+		break
 	default:
-		fmt.Printf("error svType %s\n", svType)
+		fmt.Printf("error svType %s\n", *svType)
 		return
 	}
 
 	confs := viper.New()
-
+	//confs.Set("pitaya.cluster.rpc.server.grpc.port", *port)
 
 	meta := map[string]string{
 		//constants.GRPCHostKey: "127.0.0.1",
-		//constants.GRPCPortKey: *rpcServerPort,
+		//constants.GRPCPortKey: strconv.Itoa(*port),
 	}
 
 	pitaya.Configure(*isFrontend, *svType, pitaya.Cluster, meta, confs)
@@ -82,8 +94,7 @@ func main() {
 
 	//注册redis
 	rs := redis.NewRedisStorage(pitaya.GetConfig())
-	pitaya.RegisterModule(rs,"redisStorage")
-
+	pitaya.RegisterModule(rs, "redisStorage")
 
 	gc, err := cluster.NewNatsRPCClient(
 		pitaya.GetConfig(),
