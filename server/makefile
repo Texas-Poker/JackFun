@@ -1,13 +1,13 @@
 ## 启动前端服务器
 run_server_frontend:
-	@go run main.go --port=3250 --type=sv_connector --frontend=true
+	@go run main.go --port=3250 --type=ServerConnector --frontend=true
 
 ## 启动后端服务器之大厅服务器
 run_server_lobby:
-	@go run main.go --port=3251 --type=sv_lobby --frontend=false
+	@go run main.go --port=3251 --type=ServerLobby --frontend=false
 
 run_server_http:
-	@go run main.go --port=8088 --type=sv_http --frontend=false
+	@go run main.go --port=8088 --type=ServerHttp --frontend=false
 
 ## 编译protobuf
 build_proto:

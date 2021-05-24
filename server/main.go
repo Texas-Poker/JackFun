@@ -10,38 +10,27 @@ import (
 	"github.com/topfreegames/pitaya/component"
 	"github.com/topfreegames/pitaya/modules"
 	"github.com/topfreegames/pitaya/serialize/protobuf"
-	"server/constants"
-	"server/redis"
+	"server/jcak_constants"
+	"server/module_redis"
 	"server/server_http"
 	"server/server_lobby"
 )
 
 func configureLobby() {
 	componentLobby := server_lobby.NewComponentLobby()
-	pitaya.Register(componentLobby,
-		component.WithName("component_lobby"),
-	)
-
-	pitaya.RegisterRemote(componentLobby,
-		component.WithName("component_lobby"),
-	)
+	pitaya.Register(componentLobby, component.WithName("ComponentLobby"), )
+	pitaya.RegisterRemote(componentLobby, component.WithName("ComponentLobby"), )
 }
 
 func configureHttpSever() {
 	componentHttp := server_http.NewComponentHttp()
-	pitaya.Register(componentHttp,
-		component.WithName("component_http"),
-	)
-
-	pitaya.RegisterRemote(componentHttp,
-		component.WithName("component_http"),
-	)
+	pitaya.Register(componentHttp, component.WithName("ComponentHttp"))
+	pitaya.RegisterRemote(componentHttp, component.WithName("ComponentHttp"))
 }
 
 func configureFrontend(port int) {
 	tcp := acceptor.NewTCPAcceptor(fmt.Sprintf(":%d", port))
 	pitaya.AddAcceptor(tcp)
-
 }
 
 func main() {
@@ -71,7 +60,7 @@ func main() {
 		configureHttpSever()
 		break
 	default:
-		fmt.Printf("error svType %s\n", *svType)
+		fmt.Printf("error serverType = %s\n", *svType)
 		return
 	}
 
@@ -93,7 +82,7 @@ func main() {
 	pitaya.RegisterModule(bs, "bindingsStorage")
 
 	//注册redis
-	rs := redis.NewRedisStorage(pitaya.GetConfig())
+	rs := module_redis.NewRedisStorage(pitaya.GetConfig())
 	pitaya.RegisterModule(rs, "redisStorage")
 
 	gc, err := cluster.NewNatsRPCClient(
