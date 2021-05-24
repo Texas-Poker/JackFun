@@ -21,108 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ReqLogin struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Account  string `protobuf:"bytes,1,opt,name=Account,proto3" json:"Account,omitempty"`
-	Password string `protobuf:"bytes,2,opt,name=Password,proto3" json:"Password,omitempty"`
-}
-
-func (x *ReqLogin) Reset() {
-	*x = ReqLogin{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_lobby_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ReqLogin) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ReqLogin) ProtoMessage() {}
-
-func (x *ReqLogin) ProtoReflect() protoreflect.Message {
-	mi := &file_lobby_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ReqLogin.ProtoReflect.Descriptor instead.
-func (*ReqLogin) Descriptor() ([]byte, []int) {
-	return file_lobby_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *ReqLogin) GetAccount() string {
-	if x != nil {
-		return x.Account
-	}
-	return ""
-}
-
-func (x *ReqLogin) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type RespLogin struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ErrCode pb_common.ErrorCode `protobuf:"varint,1,opt,name=ErrCode,proto3,enum=pb_common.ErrorCode" json:"ErrCode,omitempty"`
-}
-
-func (x *RespLogin) Reset() {
-	*x = RespLogin{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_lobby_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RespLogin) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RespLogin) ProtoMessage() {}
-
-func (x *RespLogin) ProtoReflect() protoreflect.Message {
-	mi := &file_lobby_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RespLogin.ProtoReflect.Descriptor instead.
-func (*RespLogin) Descriptor() ([]byte, []int) {
-	return file_lobby_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *RespLogin) GetErrCode() pb_common.ErrorCode {
-	if x != nil {
-		return x.ErrCode
-	}
-	return pb_common.ErrorCode_Default
-}
-
 type ReqLobbyInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -132,7 +30,7 @@ type ReqLobbyInfo struct {
 func (x *ReqLobbyInfo) Reset() {
 	*x = ReqLobbyInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_lobby_proto_msgTypes[2]
+		mi := &file_lobby_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -145,7 +43,7 @@ func (x *ReqLobbyInfo) String() string {
 func (*ReqLobbyInfo) ProtoMessage() {}
 
 func (x *ReqLobbyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_lobby_proto_msgTypes[2]
+	mi := &file_lobby_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +56,7 @@ func (x *ReqLobbyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqLobbyInfo.ProtoReflect.Descriptor instead.
 func (*ReqLobbyInfo) Descriptor() ([]byte, []int) {
-	return file_lobby_proto_rawDescGZIP(), []int{2}
+	return file_lobby_proto_rawDescGZIP(), []int{0}
 }
 
 type RespLobbyInfo struct {
@@ -172,7 +70,7 @@ type RespLobbyInfo struct {
 func (x *RespLobbyInfo) Reset() {
 	*x = RespLobbyInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_lobby_proto_msgTypes[3]
+		mi := &file_lobby_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -185,7 +83,7 @@ func (x *RespLobbyInfo) String() string {
 func (*RespLobbyInfo) ProtoMessage() {}
 
 func (x *RespLobbyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_lobby_proto_msgTypes[3]
+	mi := &file_lobby_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +96,7 @@ func (x *RespLobbyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RespLobbyInfo.ProtoReflect.Descriptor instead.
 func (*RespLobbyInfo) Descriptor() ([]byte, []int) {
-	return file_lobby_proto_rawDescGZIP(), []int{3}
+	return file_lobby_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RespLobbyInfo) GetErrCode() pb_common.ErrorCode {
@@ -213,23 +111,15 @@ var File_lobby_proto protoreflect.FileDescriptor
 var file_lobby_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x6c, 0x6f, 0x62, 0x62, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x08, 0x70,
 	0x62, 0x5f, 0x6c, 0x6f, 0x62, 0x62, 0x79, 0x1a, 0x10, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x5f, 0x63,
-	0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x40, 0x0a, 0x08, 0x52, 0x65, 0x71,
-	0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12,
-	0x1a, 0x0a, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x3b, 0x0a, 0x09, 0x52,
-	0x65, 0x73, 0x70, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x2e, 0x0a, 0x07, 0x45, 0x72, 0x72, 0x43,
-	0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x70, 0x62, 0x5f, 0x63,
-	0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52,
-	0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x0e, 0x0a, 0x0c, 0x52, 0x65, 0x71, 0x4c,
-	0x6f, 0x62, 0x62, 0x79, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x3f, 0x0a, 0x0d, 0x52, 0x65, 0x73, 0x70,
-	0x4c, 0x6f, 0x62, 0x62, 0x79, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x2e, 0x0a, 0x07, 0x45, 0x72, 0x72,
-	0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x70, 0x62, 0x5f,
-	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65,
-	0x52, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x42, 0x1f, 0x5a, 0x12, 0x73, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x5f, 0x6c, 0x6f, 0x62, 0x62, 0x79, 0xaa,
-	0x02, 0x08, 0x50, 0x62, 0x2e, 0x4c, 0x6f, 0x62, 0x62, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x6f, 0x64, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x0e, 0x0a, 0x0c, 0x52, 0x65, 0x71,
+	0x4c, 0x6f, 0x62, 0x62, 0x79, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x3f, 0x0a, 0x0d, 0x52, 0x65, 0x73,
+	0x70, 0x4c, 0x6f, 0x62, 0x62, 0x79, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x2e, 0x0a, 0x07, 0x45, 0x72,
+	0x72, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x70, 0x62,
+	0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64,
+	0x65, 0x52, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x42, 0x1f, 0x5a, 0x12, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x5f, 0x6c, 0x6f, 0x62, 0x62, 0x79,
+	0xaa, 0x02, 0x08, 0x50, 0x62, 0x2e, 0x4c, 0x6f, 0x62, 0x62, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -244,22 +134,19 @@ func file_lobby_proto_rawDescGZIP() []byte {
 	return file_lobby_proto_rawDescData
 }
 
-var file_lobby_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_lobby_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_lobby_proto_goTypes = []interface{}{
-	(*ReqLogin)(nil),         // 0: pb_lobby.ReqLogin
-	(*RespLogin)(nil),        // 1: pb_lobby.RespLogin
-	(*ReqLobbyInfo)(nil),     // 2: pb_lobby.ReqLobbyInfo
-	(*RespLobbyInfo)(nil),    // 3: pb_lobby.RespLobbyInfo
-	(pb_common.ErrorCode)(0), // 4: pb_common.ErrorCode
+	(*ReqLobbyInfo)(nil),     // 0: pb_lobby.ReqLobbyInfo
+	(*RespLobbyInfo)(nil),    // 1: pb_lobby.RespLobbyInfo
+	(pb_common.ErrorCode)(0), // 2: pb_common.ErrorCode
 }
 var file_lobby_proto_depIdxs = []int32{
-	4, // 0: pb_lobby.RespLogin.ErrCode:type_name -> pb_common.ErrorCode
-	4, // 1: pb_lobby.RespLobbyInfo.ErrCode:type_name -> pb_common.ErrorCode
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2, // 0: pb_lobby.RespLobbyInfo.ErrCode:type_name -> pb_common.ErrorCode
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_lobby_proto_init() }
@@ -269,30 +156,6 @@ func file_lobby_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_lobby_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReqLogin); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_lobby_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RespLogin); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_lobby_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReqLobbyInfo); i {
 			case 0:
 				return &v.state
@@ -304,7 +167,7 @@ func file_lobby_proto_init() {
 				return nil
 			}
 		}
-		file_lobby_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_lobby_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RespLobbyInfo); i {
 			case 0:
 				return &v.state
@@ -323,7 +186,7 @@ func file_lobby_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_lobby_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

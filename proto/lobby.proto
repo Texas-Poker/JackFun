@@ -1,23 +1,9 @@
 syntax = "proto3";
 package pb_lobby;
 option go_package = "server/pb/pb_lobby"; //生成go时的package
-option csharp_namespace = "Pb.Lobby"; //给c#提供的选项
+option csharp_namespace = "Pb.Lobby";     //给c#提供的选项
 import "error_code.proto";
 
-message ReqLogin{
-  string Account = 1;
-  string Password = 2;
-}
+message ReqLobbyInfo {}
 
-message RespLogin{
-
-}
-
-message ReqLobbyInfo {
-  pb_common.ErrorCode ErrCode = 1;
-}
-
-message RespLobbyInfo {
-  string ErrorCode = 1;
-}
-
+message RespLobbyInfo { pb_common.ErrorCode ErrCode = 1; }
