@@ -2,8 +2,8 @@ syntax = "proto3";
 package pb_lobby;
 option go_package = "server/pb/pb_lobby"; //生成go时的package
 option csharp_namespace = "Pb.Lobby";     //给c#提供的选项
-import "error_code.proto";
+import "enum.proto";
 
 message ReqLobbyInfo {}
 
-message RespLobbyInfo { pb_common.ErrorCode ErrCode = 1; }
+message RespLobbyInfo { pb_enum.ErrorCode ErrCode = 1; }

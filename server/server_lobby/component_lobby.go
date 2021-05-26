@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/topfreegames/pitaya/component"
 	"github.com/topfreegames/pitaya/timer"
-	"server/pb/pb_common"
+	"server/pb/pb_enum"
 	"server/pb/pb_lobby"
 )
 
@@ -18,9 +18,9 @@ func NewComponentLobby() *ComponentLobby {
 }
 
 func (this *ComponentLobby) ReqLobbyInfo(ctx context.Context, req *pb_lobby.ReqLobbyInfo) (*pb_lobby.RespLobbyInfo, error) {
-	return &pb_lobby.RespLobbyInfo{ErrCode: pb_common.ErrorCode_OK}, nil
+	return &pb_lobby.RespLobbyInfo{ErrCode: pb_enum.ErrorCode_OK}, nil
 }
 
 func (this *ComponentLobby) Test(ctx context.Context, req *pb_lobby.ReqLobbyInfo) (*pb_lobby.RespLobbyInfo, error) {
-	return &pb_lobby.RespLobbyInfo{ErrCode: pb_common.ErrorCode_AuthFailed}, nil
+	return &pb_lobby.RespLobbyInfo{ErrCode: pb_enum.ErrorCode_AuthFailed}, nil
 }

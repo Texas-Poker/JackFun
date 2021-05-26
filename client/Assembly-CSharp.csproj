@@ -52,13 +52,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scrpit\JackFun\HttpManager.cs" />
-     <Compile Include="Assets\Pb\ErrorCode.cs" />
      <Compile Include="Assets\Pb\Game.cs" />
-     <Compile Include="Assets\Pb\Lobby.cs" />
      <Compile Include="Assets\Pb\Http.cs" />
-     <Compile Include="Assets\Scrpit\JackFun\JackFun.cs" />
      <Compile Include="Assets\Scrpit\JackFun\JackFunUrl.cs" />
+     <Compile Include="Assets\Scrpit\JackFun\HttpManager.cs" />
+     <Compile Include="Assets\Pb\Enum.cs" />
+     <Compile Include="Assets\Pb\Lobby.cs" />
+     <Compile Include="Assets\Scrpit\JackFun\JackFun.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -284,6 +284,9 @@
  <Reference Include="System.Buffers">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/System.Buffers.dll</HintPath>
  </Reference>
+ <Reference Include="Ionic.Zlib.CF">
+ <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Http/Ionic.Zlib.CF.dll</HintPath>
+ </Reference>
  <Reference Include="Google.Protobuf">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/Google.Protobuf.dll</HintPath>
  </Reference>
@@ -292,9 +295,6 @@
  </Reference>
  <Reference Include="System.Memory">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/System.Memory.dll</HintPath>
- </Reference>
- <Reference Include="Ionic.Zlib.CF">
- <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Http/Ionic.Zlib.CF.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.1f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

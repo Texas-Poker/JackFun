@@ -8,18 +8,18 @@ import (
 	"github.com/topfreegames/pitaya/acceptor"
 	"github.com/topfreegames/pitaya/cluster"
 	"github.com/topfreegames/pitaya/component"
+	"github.com/topfreegames/pitaya/constants"
 	"github.com/topfreegames/pitaya/modules"
 	"github.com/topfreegames/pitaya/serialize/protobuf"
 	"server/jcak_constants"
-	"server/module_redis"
 	"server/server_http"
 	"server/server_lobby"
 )
 
 func configureLobby() {
 	componentLobby := server_lobby.NewComponentLobby()
-	pitaya.Register(componentLobby, component.WithName("ComponentLobby"), )
-	pitaya.RegisterRemote(componentLobby, component.WithName("ComponentLobby"), )
+	pitaya.Register(componentLobby, component.WithName("ComponentLobby"))
+	pitaya.RegisterRemote(componentLobby, component.WithName("ComponentLobby"))
 }
 
 func configureHttpSever() {
@@ -38,11 +38,8 @@ func main() {
 	svType := flag.String("type", "connector", "the server type")
 	isFrontend := flag.Bool("frontend", true, "if server is frontend")
 	flag.Parse()
-
 	defer pitaya.Shutdown()
-
 	pitaya.SetSerializer(protobuf.NewSerializer())
-
 	switch *svType {
 	case jcak_constants.SvTypeConnector:
 		configureFrontend(*port)
@@ -64,15 +61,14 @@ func main() {
 		return
 	}
 
-	confs := viper.New()
-	//confs.Set("pitaya.cluster.rpc.server.grpc.port", *port)
+	configs:=setConfig()
 
 	meta := map[string]string{
-		//constants.GRPCHostKey: "127.0.0.1",
-		//constants.GRPCPortKey: strconv.Itoa(*port),
+		constants.GRPCHostKey: "127.0.0.1", //正式项目中，需要设置grpc的host
+		constants.GRPCPortKey: "3434",      //正式项目中，需要设置grpc的port
 	}
 
-	pitaya.Configure(*isFrontend, *svType, pitaya.Cluster, meta, confs)
+	pitaya.Configure(*isFrontend, *svType, pitaya.Cluster, meta, configs)
 	gs, err := cluster.NewNatsRPCServer(pitaya.GetConfig(), pitaya.GetServer(), pitaya.GetMetricsReporters(), pitaya.GetDieChan())
 	if err != nil {
 		panic(err)
@@ -81,9 +77,9 @@ func main() {
 	bs := modules.NewETCDBindingStorage(pitaya.GetServer(), pitaya.GetConfig())
 	pitaya.RegisterModule(bs, "bindingsStorage")
 
-	//注册redis
-	rs := module_redis.NewRedisStorage(pitaya.GetConfig())
-	pitaya.RegisterModule(rs, "redisStorage")
+	////注册redis
+	//rs := module_redis.NewRedisStorage()
+	//pitaya.RegisterModule(rs, "redisStorage")
 
 	gc, err := cluster.NewNatsRPCClient(
 		pitaya.GetConfig(),
@@ -97,4 +93,24 @@ func main() {
 	pitaya.SetRPCServer(gs)
 	pitaya.SetRPCClient(gc)
 	pitaya.Start()
+}
+
+func setConfig() *viper.Viper {
+	//具体默认配置见：https://pitaya.readthedocs.io/en/latest/configuration.html
+	configs := viper.New()
+
+	//redis conf
+	configs.Set("pitaya.modules.redisStorage.client.host", "127.0.0.1")
+	configs.Set("pitaya.modules.redisStorage.client.port", 6379)
+	configs.Set("pitaya.modules.redisStorage.client.db", 0)
+	configs.Set("pitaya.modules.redisStorage.client.retry",5)
+	configs.Set("pitaya.modules.redisStorage.client.size",500)
+	configs.Set("pitaya.modules.redisStorage.client.idle",10)
+	configs.Set("pitaya.modules.redisStorage.client.idle","")
+
+	//grpc的端口（实现上在默认的设置中，端口即是3434，见上面的配置地址）
+	configs.Set("pitaya.cluster.rpc.server.grpc.port", 3434)
+
+	
+	return configs
 }

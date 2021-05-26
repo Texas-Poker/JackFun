@@ -24,12 +24,12 @@ namespace Pb.Lobby {
     static LobbyReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtsb2JieS5wcm90bxIIcGJfbG9iYnkaEGVycm9yX2NvZGUucHJvdG8iDgoM",
-            "UmVxTG9iYnlJbmZvIjYKDVJlc3BMb2JieUluZm8SJQoHRXJyQ29kZRgBIAEo",
-            "DjIULnBiX2NvbW1vbi5FcnJvckNvZGVCH1oSc2VydmVyL3BiL3BiX2xvYmJ5",
-            "qgIIUGIuTG9iYnliBnByb3RvMw=="));
+            "Cgtsb2JieS5wcm90bxIIcGJfbG9iYnkaCmVudW0ucHJvdG8iDgoMUmVxTG9i",
+            "YnlJbmZvIjQKDVJlc3BMb2JieUluZm8SIwoHRXJyQ29kZRgBIAEoDjISLnBi",
+            "X2VudW0uRXJyb3JDb2RlQh9aEnNlcnZlci9wYi9wYl9sb2JieaoCCFBiLkxv",
+            "YmJ5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PbCommon.ErrorCodeReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Pb.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.ReqLobbyInfo), global::Pb.Lobby.ReqLobbyInfo.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespLobbyInfo), global::Pb.Lobby.RespLobbyInfo.Parser, new[]{ "ErrCode" }, null, null, null, null)
@@ -215,9 +215,9 @@ namespace Pb.Lobby {
 
     /// <summary>Field number for the "ErrCode" field.</summary>
     public const int ErrCodeFieldNumber = 1;
-    private global::PbCommon.ErrorCode errCode_ = global::PbCommon.ErrorCode.Default;
+    private global::Pb.Enum.ErrorCode errCode_ = global::Pb.Enum.ErrorCode.Default;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::PbCommon.ErrorCode ErrCode {
+    public global::Pb.Enum.ErrorCode ErrCode {
       get { return errCode_; }
       set {
         errCode_ = value;
@@ -244,7 +244,7 @@ namespace Pb.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ErrCode != global::PbCommon.ErrorCode.Default) hash ^= ErrCode.GetHashCode();
+      if (ErrCode != global::Pb.Enum.ErrorCode.Default) hash ^= ErrCode.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -261,7 +261,7 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ErrCode != global::PbCommon.ErrorCode.Default) {
+      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
         output.WriteRawTag(8);
         output.WriteEnum((int) ErrCode);
       }
@@ -274,7 +274,7 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ErrCode != global::PbCommon.ErrorCode.Default) {
+      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
         output.WriteRawTag(8);
         output.WriteEnum((int) ErrCode);
       }
@@ -287,7 +287,7 @@ namespace Pb.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ErrCode != global::PbCommon.ErrorCode.Default) {
+      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ErrCode);
       }
       if (_unknownFields != null) {
@@ -301,7 +301,7 @@ namespace Pb.Lobby {
       if (other == null) {
         return;
       }
-      if (other.ErrCode != global::PbCommon.ErrorCode.Default) {
+      if (other.ErrCode != global::Pb.Enum.ErrorCode.Default) {
         ErrCode = other.ErrCode;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -319,7 +319,7 @@ namespace Pb.Lobby {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ErrCode = (global::PbCommon.ErrorCode) input.ReadEnum();
+            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
             break;
           }
         }
@@ -337,7 +337,7 @@ namespace Pb.Lobby {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ErrCode = (global::PbCommon.ErrorCode) input.ReadEnum();
+            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
             break;
           }
         }

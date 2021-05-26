@@ -22,6 +22,7 @@ func (this *ComponentHttp) startHttpServer() *http.Server {
 	srv := &http.Server{Addr: ":8088"}
 	http.HandleFunc("/entry", this.entry)
 	http.HandleFunc("/login", this.login)
+	http.HandleFunc("/register", this.register)
 	http.HandleFunc("/test", this.test)
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
