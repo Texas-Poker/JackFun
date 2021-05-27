@@ -11,6 +11,7 @@ import (
 	"github.com/topfreegames/pitaya/constants"
 	"github.com/topfreegames/pitaya/modules"
 	"github.com/topfreegames/pitaya/serialize/protobuf"
+	"server/dao/db_handler"
 	"server/jcak_constants"
 	"server/server_http"
 	"server/server_lobby"
@@ -60,7 +61,6 @@ func main() {
 		fmt.Printf("error serverType = %s\n", *svType)
 		return
 	}
-
 	configs:=setConfig()
 
 	meta := map[string]string{
@@ -69,17 +69,13 @@ func main() {
 	}
 
 	pitaya.Configure(*isFrontend, *svType, pitaya.Cluster, meta, configs)
+
+	registerModule()
+
 	gs, err := cluster.NewNatsRPCServer(pitaya.GetConfig(), pitaya.GetServer(), pitaya.GetMetricsReporters(), pitaya.GetDieChan())
 	if err != nil {
 		panic(err)
 	}
-
-	bs := modules.NewETCDBindingStorage(pitaya.GetServer(), pitaya.GetConfig())
-	pitaya.RegisterModule(bs, "bindingsStorage")
-
-	////注册redis
-	//rs := module_redis.NewRedisStorage()
-	//pitaya.RegisterModule(rs, "redisStorage")
 
 	gc, err := cluster.NewNatsRPCClient(
 		pitaya.GetConfig(),
@@ -110,7 +106,20 @@ func setConfig() *viper.Viper {
 
 	//grpc的端口（实现上在默认的设置中，端口即是3434，见上面的配置地址）
 	configs.Set("pitaya.cluster.rpc.server.grpc.port", 3434)
-
-	
 	return configs
+}
+
+func registerModule()  {
+
+	//绑定etcd的模块
+	bs := modules.NewETCDBindingStorage(pitaya.GetServer(), pitaya.GetConfig())
+	pitaya.RegisterModule(bs, "bindingsStorage")
+
+	//处理注册redis的模块
+	dbHandlerRegister := db_handler.NewDBRegisterHandler()
+	pitaya.RegisterModule(dbHandlerRegister,"dbHandlerRegister")
+
+	//处理登录redis的模块
+	dbHandlerLogin := db_handler.NewDBLoginHandler()
+	pitaya.RegisterModule(dbHandlerLogin,"dbHandlerLogin")
 }

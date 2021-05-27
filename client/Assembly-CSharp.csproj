@@ -52,6 +52,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scrpit\JackFun\NetPitaya.cs" />
+     <Compile Include="Assets\Scrpit\JackFun\Session.cs" />
      <Compile Include="Assets\Pb\Game.cs" />
      <Compile Include="Assets\Pb\Http.cs" />
      <Compile Include="Assets\Scrpit\JackFun\JackFunUrl.cs" />
@@ -287,11 +289,14 @@
  <Reference Include="Ionic.Zlib.CF">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Http/Ionic.Zlib.CF.dll</HintPath>
  </Reference>
- <Reference Include="Google.Protobuf">
- <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/Google.Protobuf.dll</HintPath>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/TFG.JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="System.Runtime.CompilerServices.Unsafe">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.Protobuf">
+ <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/Google.Protobuf.dll</HintPath>
  </Reference>
  <Reference Include="System.Memory">
  <HintPath>/Users/emao/git_repository/jack_fun/client/Assets/Plugins/Protobuf/System.Memory.dll</HintPath>
@@ -679,6 +684,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{a0431b3a-6e27-fb34-197e-1acde9001a0f}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pitaya.Editor.csproj">
+      <Project>{36e4dcf4-3388-59d8-b4e2-fe77408324d5}</Project>
+      <Name>Pitaya.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Pitaya.csproj">
+      <Project>{444a5480-413e-03e9-0821-db004b9e3874}</Project>
+      <Name>Pitaya</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

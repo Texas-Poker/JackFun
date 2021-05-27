@@ -1,29 +1,26 @@
 package server_http
 
 import (
-	"context"
 	"crypto/md5"
 	"encoding/hex"
+	"fmt"
 	"github.com/bwmarrin/snowflake"
-	"github.com/topfreegames/pitaya"
 	"github.com/topfreegames/pitaya/logger"
 	"google.golang.org/protobuf/proto"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"server/dao/pojo"
 	"server/pb/pb_enum"
 	"server/pb/pb_http"
-	"server/pb/pb_lobby"
 	"strings"
+	"time"
 )
 
-//客户端与服务端连接的密钥
-var key = "天王盖地虎"
-
-func md5V(str string) string {
+func genToken(account string, password string) string {
 	h := md5.New()
-	h.Write([]byte(str))
+	key := fmt.Sprintf("account=%s,password=%s,time=%d", account, password, time.Now().Nanosecond())
+	logger.Log.Infoln("token key=", key)
+	h.Write([]byte(key))
 	return hex.EncodeToString(h.Sum(nil))
 }
 
@@ -37,48 +34,20 @@ func (this *ComponentHttp) entry(w http.ResponseWriter, r *http.Request) {
 	log.Printf("[entry], req.Secret=%s\n", req.Secret)
 	resp := new(pb_http.RespEntry)
 	//如果客户端的包里不带密钥或是密钥错误，将无法获取真实的游戏服务器地址
-	if strings.Contains(req.Secret, key) && strings.Contains(req.Secret, "宝塔镇河妖") {
+	if strings.Contains(req.Secret, "天王盖地虎") && strings.Contains(req.Secret, "宝塔镇河妖") {
 		resp.ErrCode = pb_enum.ErrorCode_OK
 		resp.LoginUrl = "http://127.0.0.1:8088/login"
 		resp.RegisterUrl = "http://127.0.0.1:8088/register"
-		resp.TcpUrl = "127.0.0.1:3250"
+		resp.TcpUrl = &pb_http.RespEntry_Addr{
+			Host: "127.0.0.1",
+			Port: 3250,
+		}
 	} else {
 		resp.ErrCode = pb_enum.ErrorCode_EntryError
 	}
 
 	if pbByte, err := proto.Marshal(resp); err == nil {
 		log.Printf("[entry] result=%v\n", resp)
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Write(pbByte)
-	}
-}
-
-func (this *ComponentHttp) login(w http.ResponseWriter, r *http.Request) {
-	buf, _ := ioutil.ReadAll(r.Body)
-	req := new(pb_http.ReqLogin)
-	if err := proto.Unmarshal(buf, req); err != nil {
-		return
-	}
-
-	log.Printf("onLogin account=%s, password=%s\n", req.Account, req.Password)
-
-	resp := new(pb_http.RespLogin)
-	//判断是否是空找得到数据
-	if isExist, _ := pojo.CheckAccountExist(req.Account); !isExist {
-		resp.ErrCode = pb_enum.ErrorCode_Default
-	} else {
-		if password, _, err := pojo.QueryAccount(req.Account); err == nil {
-			if req.Password == password {
-				//将account+时间生成token
-				resp.ErrCode = pb_enum.ErrorCode_OK
-			} else {
-				resp.ErrCode = pb_enum.ErrorCode_LoginAccountOrPasswordError
-			}
-		}
-	}
-
-	logger.Log.Infof("[entry] result=%v\n", resp)
-	if pbByte, err := proto.Marshal(resp); err == nil {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Write(pbByte)
 	}
@@ -95,7 +64,7 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 
 	resp := new(pb_http.RespRegister)
 	//判断是否是空找得到数据
-	if isExist, _ := pojo.CheckAccountExist(req.Account); isExist {
+	if isAlreadyRegister, _ := this.db_reigster_handler.CheckIsRegister(req.Account); isAlreadyRegister {
 		resp.ErrCode = pb_enum.ErrorCode_RegisterAccountExit
 	} else {
 		n, err := snowflake.NewNode(1)
@@ -103,7 +72,7 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 			println(err)
 		}
 		id := n.Generate().Int64()
-		pojo.NewUserAndSaveRedis(req.Account, req.Password, id)
+		this.db_reigster_handler.NewRegister(req.Account, req.Password, id)
 		resp.ErrCode = pb_enum.ErrorCode_OK
 	}
 
@@ -114,19 +83,37 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (this *ComponentHttp) test(w http.ResponseWriter, r *http.Request) {
-	req := &pb_lobby.ReqLobbyInfo{
-
-	}
-	resp := new(pb_lobby.RespLobbyInfo)
-	if err := pitaya.RPC(context.Background(), "ServerLobby.ComponentLobby.Test", resp, req); err != nil {
-
+func (this *ComponentHttp) login(w http.ResponseWriter, r *http.Request) {
+	buf, _ := ioutil.ReadAll(r.Body)
+	req := new(pb_http.ReqLogin)
+	if err := proto.Unmarshal(buf, req); err != nil {
 		return
 	}
-	log.Printf("rpc result, resp.errorcode=%s\n", resp.ErrCode)
-	respByte, err := proto.Marshal(resp)
-	if err != nil {
-		return
+
+	log.Printf("onLogin account=%s, password=%s\n", req.Account, req.Password)
+
+	resp := new(pb_http.RespLogin)
+	//判断是否是空找得到数据
+	if isExist, _ := this.db_reigster_handler.CheckIsRegister(req.Account); !isExist {
+		resp.ErrCode = pb_enum.ErrorCode_Default
+	} else {
+		if password, id, err := this.db_reigster_handler.GetRegisterInfoByAccount(req.Account); err == nil {
+			if req.Password == password {
+				token := genToken(req.Account, req.Password)
+				this.db_login_handler.DeleteTokenByUID(id)
+				this.db_login_handler.SaveLoginDB(id, token)
+				//将account+时间生成token
+				resp.Token = token
+				resp.ErrCode = pb_enum.ErrorCode_OK
+			} else {
+				resp.ErrCode = pb_enum.ErrorCode_LoginAccountOrPasswordError
+			}
+		}
 	}
-	w.Write(respByte)
+
+	logger.Log.Infof("[entry] result=%v\n", resp)
+	if pbByte, err := proto.Marshal(resp); err == nil {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Write(pbByte)
+	}
 }

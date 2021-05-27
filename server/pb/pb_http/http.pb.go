@@ -218,8 +218,8 @@ type RespEntry struct {
 	ErrCode      pb_enum.ErrorCode `protobuf:"varint,1,opt,name=ErrCode,proto3,enum=pb_enum.ErrorCode" json:"ErrCode,omitempty"`
 	LoginUrl     string            `protobuf:"bytes,2,opt,name=LoginUrl,proto3" json:"LoginUrl,omitempty"`         //登录http地址
 	RegisterUrl  string            `protobuf:"bytes,3,opt,name=RegisterUrl,proto3" json:"RegisterUrl,omitempty"`   //注册http地址
-	TcpUrl       string            `protobuf:"bytes,4,opt,name=TcpUrl,proto3" json:"TcpUrl,omitempty"`             // TCP连接地址
-	WebSocketUrl string            `protobuf:"bytes,5,opt,name=WebSocketUrl,proto3" json:"WebSocketUrl,omitempty"` // Websocket连接地址
+	TcpUrl       *RespEntry_Addr   `protobuf:"bytes,4,opt,name=TcpUrl,proto3" json:"TcpUrl,omitempty"`             // TCP连接地址
+	WebSocketUrl *RespEntry_Addr   `protobuf:"bytes,5,opt,name=WebSocketUrl,proto3" json:"WebSocketUrl,omitempty"` // Websocket连接地址
 }
 
 func (x *RespEntry) Reset() {
@@ -275,120 +275,18 @@ func (x *RespEntry) GetRegisterUrl() string {
 	return ""
 }
 
-func (x *RespEntry) GetTcpUrl() string {
+func (x *RespEntry) GetTcpUrl() *RespEntry_Addr {
 	if x != nil {
 		return x.TcpUrl
 	}
-	return ""
+	return nil
 }
 
-func (x *RespEntry) GetWebSocketUrl() string {
+func (x *RespEntry) GetWebSocketUrl() *RespEntry_Addr {
 	if x != nil {
 		return x.WebSocketUrl
 	}
-	return ""
-}
-
-type ReqLogin struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Account  string `protobuf:"bytes,1,opt,name=Account,proto3" json:"Account,omitempty"`
-	Password string `protobuf:"bytes,2,opt,name=Password,proto3" json:"Password,omitempty"`
-}
-
-func (x *ReqLogin) Reset() {
-	*x = ReqLogin{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_http_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ReqLogin) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ReqLogin) ProtoMessage() {}
-
-func (x *ReqLogin) ProtoReflect() protoreflect.Message {
-	mi := &file_http_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ReqLogin.ProtoReflect.Descriptor instead.
-func (*ReqLogin) Descriptor() ([]byte, []int) {
-	return file_http_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *ReqLogin) GetAccount() string {
-	if x != nil {
-		return x.Account
-	}
-	return ""
-}
-
-func (x *ReqLogin) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type RespLogin struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ErrCode pb_enum.ErrorCode `protobuf:"varint,1,opt,name=ErrCode,proto3,enum=pb_enum.ErrorCode" json:"ErrCode,omitempty"`
-}
-
-func (x *RespLogin) Reset() {
-	*x = RespLogin{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_http_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RespLogin) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RespLogin) ProtoMessage() {}
-
-func (x *RespLogin) ProtoReflect() protoreflect.Message {
-	mi := &file_http_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RespLogin.ProtoReflect.Descriptor instead.
-func (*RespLogin) Descriptor() ([]byte, []int) {
-	return file_http_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *RespLogin) GetErrCode() pb_enum.ErrorCode {
-	if x != nil {
-		return x.ErrCode
-	}
-	return pb_enum.ErrorCode_Default
+	return nil
 }
 
 type ReqRegister struct {
@@ -403,7 +301,7 @@ type ReqRegister struct {
 func (x *ReqRegister) Reset() {
 	*x = ReqRegister{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_http_proto_msgTypes[4]
+		mi := &file_http_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -416,7 +314,7 @@ func (x *ReqRegister) String() string {
 func (*ReqRegister) ProtoMessage() {}
 
 func (x *ReqRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_http_proto_msgTypes[4]
+	mi := &file_http_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -429,7 +327,7 @@ func (x *ReqRegister) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqRegister.ProtoReflect.Descriptor instead.
 func (*ReqRegister) Descriptor() ([]byte, []int) {
-	return file_http_proto_rawDescGZIP(), []int{4}
+	return file_http_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ReqRegister) GetAccount() string {
@@ -457,7 +355,7 @@ type RespRegister struct {
 func (x *RespRegister) Reset() {
 	*x = RespRegister{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_http_proto_msgTypes[5]
+		mi := &file_http_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -470,7 +368,7 @@ func (x *RespRegister) String() string {
 func (*RespRegister) ProtoMessage() {}
 
 func (x *RespRegister) ProtoReflect() protoreflect.Message {
-	mi := &file_http_proto_msgTypes[5]
+	mi := &file_http_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -483,7 +381,7 @@ func (x *RespRegister) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RespRegister.ProtoReflect.Descriptor instead.
 func (*RespRegister) Descriptor() ([]byte, []int) {
-	return file_http_proto_rawDescGZIP(), []int{5}
+	return file_http_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RespRegister) GetErrCode() pb_enum.ErrorCode {
@@ -491,6 +389,171 @@ func (x *RespRegister) GetErrCode() pb_enum.ErrorCode {
 		return x.ErrCode
 	}
 	return pb_enum.ErrorCode_Default
+}
+
+type ReqLogin struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Account  string `protobuf:"bytes,1,opt,name=Account,proto3" json:"Account,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=Password,proto3" json:"Password,omitempty"`
+}
+
+func (x *ReqLogin) Reset() {
+	*x = ReqLogin{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_http_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReqLogin) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReqLogin) ProtoMessage() {}
+
+func (x *ReqLogin) ProtoReflect() protoreflect.Message {
+	mi := &file_http_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReqLogin.ProtoReflect.Descriptor instead.
+func (*ReqLogin) Descriptor() ([]byte, []int) {
+	return file_http_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ReqLogin) GetAccount() string {
+	if x != nil {
+		return x.Account
+	}
+	return ""
+}
+
+func (x *ReqLogin) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type RespLogin struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ErrCode pb_enum.ErrorCode `protobuf:"varint,1,opt,name=ErrCode,proto3,enum=pb_enum.ErrorCode" json:"ErrCode,omitempty"`
+	Token   string            `protobuf:"bytes,2,opt,name=Token,proto3" json:"Token,omitempty"`
+}
+
+func (x *RespLogin) Reset() {
+	*x = RespLogin{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_http_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RespLogin) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RespLogin) ProtoMessage() {}
+
+func (x *RespLogin) ProtoReflect() protoreflect.Message {
+	mi := &file_http_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RespLogin.ProtoReflect.Descriptor instead.
+func (*RespLogin) Descriptor() ([]byte, []int) {
+	return file_http_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RespLogin) GetErrCode() pb_enum.ErrorCode {
+	if x != nil {
+		return x.ErrCode
+	}
+	return pb_enum.ErrorCode_Default
+}
+
+func (x *RespLogin) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type RespEntry_Addr struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Host string `protobuf:"bytes,1,opt,name=Host,proto3" json:"Host,omitempty"`
+	Port int32  `protobuf:"varint,2,opt,name=Port,proto3" json:"Port,omitempty"`
+}
+
+func (x *RespEntry_Addr) Reset() {
+	*x = RespEntry_Addr{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_http_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RespEntry_Addr) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RespEntry_Addr) ProtoMessage() {}
+
+func (x *RespEntry_Addr) ProtoReflect() protoreflect.Message {
+	mi := &file_http_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RespEntry_Addr.ProtoReflect.Descriptor instead.
+func (*RespEntry_Addr) Descriptor() ([]byte, []int) {
+	return file_http_proto_rawDescGZIP(), []int{1, 0}
+}
+
+func (x *RespEntry_Addr) GetHost() string {
+	if x != nil {
+		return x.Host
+	}
+	return ""
+}
+
+func (x *RespEntry_Addr) GetPort() int32 {
+	if x != nil {
+		return x.Port
+	}
+	return 0
 }
 
 var File_http_proto protoreflect.FileDescriptor
@@ -518,37 +581,45 @@ var file_http_proto_rawDesc = []byte{
 	0x07, 0x0a, 0x03, 0x49, 0x6f, 0x73, 0x10, 0x02, 0x12, 0x09, 0x0a, 0x05, 0x57, 0x69, 0x6e, 0x50,
 	0x43, 0x10, 0x03, 0x22, 0x29, 0x0a, 0x07, 0x45, 0x6e, 0x75, 0x6d, 0x45, 0x6e, 0x76, 0x12, 0x07,
 	0x0a, 0x03, 0x44, 0x65, 0x76, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x41, 0x6c, 0x70, 0x68, 0x61,
-	0x10, 0x02, 0x12, 0x0a, 0x0a, 0x06, 0x4f, 0x66, 0x66, 0x69, 0x63, 0x65, 0x10, 0x01, 0x22, 0xb3,
-	0x01, 0x0a, 0x09, 0x52, 0x65, 0x73, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x2c, 0x0a, 0x07,
+	0x10, 0x02, 0x12, 0x0a, 0x0a, 0x06, 0x4f, 0x66, 0x66, 0x69, 0x63, 0x65, 0x10, 0x01, 0x22, 0x97,
+	0x02, 0x0a, 0x09, 0x52, 0x65, 0x73, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x2c, 0x0a, 0x07,
 	0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x12, 0x2e,
 	0x70, 0x62, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64,
 	0x65, 0x52, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x4c, 0x6f,
 	0x67, 0x69, 0x6e, 0x55, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x4c, 0x6f,
 	0x67, 0x69, 0x6e, 0x55, 0x72, 0x6c, 0x12, 0x20, 0x0a, 0x0b, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
 	0x65, 0x72, 0x55, 0x72, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x52, 0x65, 0x67,
-	0x69, 0x73, 0x74, 0x65, 0x72, 0x55, 0x72, 0x6c, 0x12, 0x16, 0x0a, 0x06, 0x54, 0x63, 0x70, 0x55,
-	0x72, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x54, 0x63, 0x70, 0x55, 0x72, 0x6c,
-	0x12, 0x22, 0x0a, 0x0c, 0x57, 0x65, 0x62, 0x53, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x55, 0x72, 0x6c,
-	0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x57, 0x65, 0x62, 0x53, 0x6f, 0x63, 0x6b, 0x65,
-	0x74, 0x55, 0x72, 0x6c, 0x22, 0x40, 0x0a, 0x08, 0x52, 0x65, 0x71, 0x4c, 0x6f, 0x67, 0x69, 0x6e,
-	0x12, 0x18, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x39, 0x0a, 0x09, 0x52, 0x65, 0x73, 0x70, 0x4c, 0x6f,
-	0x67, 0x69, 0x6e, 0x12, 0x2c, 0x0a, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0e, 0x32, 0x12, 0x2e, 0x70, 0x62, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x2e, 0x45,
-	0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64,
-	0x65, 0x22, 0x43, 0x0a, 0x0b, 0x52, 0x65, 0x71, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
-	0x12, 0x18, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x3c, 0x0a, 0x0c, 0x52, 0x65, 0x73, 0x70, 0x52, 0x65,
-	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x12, 0x2c, 0x0a, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x12, 0x2e, 0x70, 0x62, 0x5f, 0x65, 0x6e, 0x75,
-	0x6d, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x45, 0x72, 0x72,
-	0x43, 0x6f, 0x64, 0x65, 0x42, 0x1d, 0x5a, 0x11, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x70,
-	0x62, 0x2f, 0x70, 0x62, 0x5f, 0x68, 0x74, 0x74, 0x70, 0xaa, 0x02, 0x07, 0x50, 0x62, 0x2e, 0x48,
-	0x74, 0x74, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x55, 0x72, 0x6c, 0x12, 0x30, 0x0a, 0x06, 0x54, 0x63, 0x70, 0x55,
+	0x72, 0x6c, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x70, 0x62, 0x5f, 0x6c, 0x6f,
+	0x62, 0x62, 0x79, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x2e, 0x41, 0x64,
+	0x64, 0x72, 0x52, 0x06, 0x54, 0x63, 0x70, 0x55, 0x72, 0x6c, 0x12, 0x3c, 0x0a, 0x0c, 0x57, 0x65,
+	0x62, 0x53, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x55, 0x72, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x18, 0x2e, 0x70, 0x62, 0x5f, 0x6c, 0x6f, 0x62, 0x62, 0x79, 0x2e, 0x52, 0x65, 0x73, 0x70,
+	0x45, 0x6e, 0x74, 0x72, 0x79, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x52, 0x0c, 0x57, 0x65, 0x62, 0x53,
+	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x55, 0x72, 0x6c, 0x1a, 0x2e, 0x0a, 0x04, 0x41, 0x64, 0x64, 0x72,
+	0x12, 0x12, 0x0a, 0x04, 0x48, 0x6f, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x48, 0x6f, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x50, 0x6f, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x04, 0x50, 0x6f, 0x72, 0x74, 0x22, 0x43, 0x0a, 0x0b, 0x52, 0x65, 0x71, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x3c, 0x0a,
+	0x0c, 0x52, 0x65, 0x73, 0x70, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x12, 0x2c, 0x0a,
+	0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x12,
+	0x2e, 0x70, 0x62, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f,
+	0x64, 0x65, 0x52, 0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x40, 0x0a, 0x08, 0x52,
+	0x65, 0x71, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x4f, 0x0a,
+	0x09, 0x52, 0x65, 0x73, 0x70, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x2c, 0x0a, 0x07, 0x45, 0x72,
+	0x72, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x12, 0x2e, 0x70, 0x62,
+	0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x2e, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52,
+	0x07, 0x45, 0x72, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x54, 0x6f, 0x6b, 0x65,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x1d,
+	0x5a, 0x11, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x5f, 0x68,
+	0x74, 0x74, 0x70, 0xaa, 0x02, 0x07, 0x50, 0x62, 0x2e, 0x48, 0x74, 0x74, 0x70, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -564,29 +635,32 @@ func file_http_proto_rawDescGZIP() []byte {
 }
 
 var file_http_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_http_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_http_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_http_proto_goTypes = []interface{}{
 	(ReqEntry_EnumPlatform)(0), // 0: pb_lobby.ReqEntry.EnumPlatform
 	(ReqEntry_EnumEnv)(0),      // 1: pb_lobby.ReqEntry.EnumEnv
 	(*ReqEntry)(nil),           // 2: pb_lobby.ReqEntry
 	(*RespEntry)(nil),          // 3: pb_lobby.RespEntry
-	(*ReqLogin)(nil),           // 4: pb_lobby.ReqLogin
-	(*RespLogin)(nil),          // 5: pb_lobby.RespLogin
-	(*ReqRegister)(nil),        // 6: pb_lobby.ReqRegister
-	(*RespRegister)(nil),       // 7: pb_lobby.RespRegister
-	(pb_enum.ErrorCode)(0),     // 8: pb_enum.ErrorCode
+	(*ReqRegister)(nil),        // 4: pb_lobby.ReqRegister
+	(*RespRegister)(nil),       // 5: pb_lobby.RespRegister
+	(*ReqLogin)(nil),           // 6: pb_lobby.ReqLogin
+	(*RespLogin)(nil),          // 7: pb_lobby.RespLogin
+	(*RespEntry_Addr)(nil),     // 8: pb_lobby.RespEntry.Addr
+	(pb_enum.ErrorCode)(0),     // 9: pb_enum.ErrorCode
 }
 var file_http_proto_depIdxs = []int32{
 	0, // 0: pb_lobby.ReqEntry.Platform:type_name -> pb_lobby.ReqEntry.EnumPlatform
 	1, // 1: pb_lobby.ReqEntry.Env:type_name -> pb_lobby.ReqEntry.EnumEnv
-	8, // 2: pb_lobby.RespEntry.ErrCode:type_name -> pb_enum.ErrorCode
-	8, // 3: pb_lobby.RespLogin.ErrCode:type_name -> pb_enum.ErrorCode
-	8, // 4: pb_lobby.RespRegister.ErrCode:type_name -> pb_enum.ErrorCode
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	9, // 2: pb_lobby.RespEntry.ErrCode:type_name -> pb_enum.ErrorCode
+	8, // 3: pb_lobby.RespEntry.TcpUrl:type_name -> pb_lobby.RespEntry.Addr
+	8, // 4: pb_lobby.RespEntry.WebSocketUrl:type_name -> pb_lobby.RespEntry.Addr
+	9, // 5: pb_lobby.RespRegister.ErrCode:type_name -> pb_enum.ErrorCode
+	9, // 6: pb_lobby.RespLogin.ErrCode:type_name -> pb_enum.ErrorCode
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_http_proto_init() }
@@ -620,30 +694,6 @@ func file_http_proto_init() {
 			}
 		}
 		file_http_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReqLogin); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_http_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RespLogin); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_http_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReqRegister); i {
 			case 0:
 				return &v.state
@@ -655,8 +705,44 @@ func file_http_proto_init() {
 				return nil
 			}
 		}
-		file_http_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_http_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RespRegister); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_http_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReqLogin); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_http_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RespLogin); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_http_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RespEntry_Addr); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -674,7 +760,7 @@ func file_http_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_http_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

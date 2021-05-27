@@ -4,6 +4,10 @@ option go_package = "server/pb/pb_lobby"; //生成go时的package
 option csharp_namespace = "Pb.Lobby";     //给c#提供的选项
 import "enum.proto";
 
+message ReqAuth { string Token = 1; }
+
+message RespAuth { pb_enum.ErrorCode ErrCode = 1; }
+
 message ReqLobbyInfo {}
 
 message RespLobbyInfo { pb_enum.ErrorCode ErrCode = 1; }

@@ -8,6 +8,12 @@ namespace JackFun
         private void Start()
         {
             HttpManager.Init();
+            NetPitaya.Init();
+        }
+
+        private void OnDestroy()
+        {
+            NetPitaya.Release();
         }
     }
 }

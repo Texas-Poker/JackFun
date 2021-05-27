@@ -10,7 +10,7 @@ run_server_http:
 	@go run main.go --port=8088 --type=ServerHttp --frontend=false
 
 ## 编译protobuf
-build_proto:
+build_proto_go:
 	@echo "step1:先清掉pb文件夹"
 	@rm -rf pb
 	@mkdir pb
@@ -41,3 +41,6 @@ build_proto_cs:
 	@protoc --csharp_out=../client/Assets/Pb -I=../proto  ../proto/*.proto
 	@echo "生成pb文件成功"
 
+build_proto_all:
+	@make build_proto_cs
+	@make build_proto_go

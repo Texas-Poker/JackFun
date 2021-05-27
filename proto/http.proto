@@ -26,19 +26,16 @@ message ReqEntry {
 
 //入口消息resp，服务端将登录、注册、长连接等地址下发
 message RespEntry {
+  message Addr {
+    string Host = 1;
+    int32 Port = 2;
+  }
   pb_enum.ErrorCode ErrCode = 1;
-  string LoginUrl = 2;     //登录http地址
-  string RegisterUrl = 3;  //注册http地址
-  string TcpUrl = 4;       // TCP连接地址
-  string WebSocketUrl = 5; // Websocket连接地址
+  string LoginUrl = 2;    //登录http地址
+  string RegisterUrl = 3; //注册http地址
+  Addr TcpUrl = 4;        // TCP连接地址
+  Addr WebSocketUrl = 5;  // Websocket连接地址
 }
-
-message ReqLogin {
-  string Account = 1;
-  string Password = 2;
-}
-
-message RespLogin { pb_enum.ErrorCode ErrCode = 1; }
 
 message ReqRegister {
   string Account = 1;
@@ -46,3 +43,13 @@ message ReqRegister {
 }
 
 message RespRegister { pb_enum.ErrorCode ErrCode = 1; }
+
+message ReqLogin {
+  string Account = 1;
+  string Password = 2;
+}
+
+message RespLogin {
+  pb_enum.ErrorCode ErrCode = 1;
+  string Token = 2;
+}
