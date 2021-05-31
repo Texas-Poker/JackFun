@@ -24,13 +24,13 @@ namespace Pb.Enum {
     static EnumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgplbnVtLnByb3RvEgdwYl9lbnVtKrwBCglFcnJvckNvZGUSCwoHRGVmYXVs",
-            "dBAAEgYKAk9LEAESDgoKRW50cnlFcnJvchACEh8KG0xvZ2luQWNjb3VudE9y",
-            "UGFzc3dvcmRFcnJvchADEhcKE1JlZ2lzdGVyQWNjb3VudEV4aXQQBBIOCgpB",
-            "dXRoRmFpbGVkEAUSEgoOUm9vbVVuRXhpc3RlbnQQBhIVChFSb29tUGFzc3dv",
-            "cmRFcnJvchAHEhUKEVVzZXJBbHJlYWR5SW5Sb29tEAgqJwoDU2V4EgoKBlVu",
-            "a25vdxAAEggKBE1hbGUQARIKCgZGZW1hbGUQAkIdWhFzZXJ2ZXIvcGIvcGJf",
-            "ZW51baoCB1BiLkVudW1iBnByb3RvMw=="));
+            "CgplbnVtLnByb3RvEgdwYl9lbnVtKs8BCglFcnJvckNvZGUSCwoHRGVmYXVs",
+            "dBAAEgYKAk9LEAESDgoKRW50cnlFcnJvchACEhoKFkxvZ2luQWNjb3VudFVu",
+            "RXhpeHRlbnQQAxIWChJMb2dpblBhc3N3b3JkRXJyb3IQBBIXChNSZWdpc3Rl",
+            "ckFjY291bnRFeGl0EAUSDgoKQXV0aEZhaWxlZBAGEhIKDlJvb21VbkV4aXN0",
+            "ZW50EAcSFQoRUm9vbVBhc3N3b3JkRXJyb3IQCBIVChFVc2VyQWxyZWFkeUlu",
+            "Um9vbRAJKicKA1NleBIKCgZVbmtub3cQABIICgRNYWxlEAESCgoGRmVtYWxl",
+            "EAJCHVoRc2VydmVyL3BiL3BiX2VudW2qAgdQYi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Pb.Enum.ErrorCode), typeof(global::Pb.Enum.Sex), }, null, null));
@@ -53,29 +53,33 @@ namespace Pb.Enum {
     /// </summary>
     [pbr::OriginalName("EntryError")] EntryError = 2,
     /// <summary>
-    ///登录账号或密码错误（登录）
+    ///登录账号不存在
     /// </summary>
-    [pbr::OriginalName("LoginAccountOrPasswordError")] LoginAccountOrPasswordError = 3,
+    [pbr::OriginalName("LoginAccountUnExixtent")] LoginAccountUnExixtent = 3,
     /// <summary>
-    ///账号已存在（注册）
+    ///登录密码错误
     /// </summary>
-    [pbr::OriginalName("RegisterAccountExit")] RegisterAccountExit = 4,
+    [pbr::OriginalName("LoginPasswordError")] LoginPasswordError = 4,
+    /// <summary>
+    ///注册账号已存在
+    /// </summary>
+    [pbr::OriginalName("RegisterAccountExit")] RegisterAccountExit = 5,
     /// <summary>
     ///授权失败（先登录再进行长连接）
     /// </summary>
-    [pbr::OriginalName("AuthFailed")] AuthFailed = 5,
+    [pbr::OriginalName("AuthFailed")] AuthFailed = 6,
     /// <summary>
     ///房间不存在
     /// </summary>
-    [pbr::OriginalName("RoomUnExistent")] RoomUnExistent = 6,
+    [pbr::OriginalName("RoomUnExistent")] RoomUnExistent = 7,
     /// <summary>
     ///房间密码错误
     /// </summary>
-    [pbr::OriginalName("RoomPasswordError")] RoomPasswordError = 7,
+    [pbr::OriginalName("RoomPasswordError")] RoomPasswordError = 8,
     /// <summary>
     ///玩家已在房间中，不能再创建房间
     /// </summary>
-    [pbr::OriginalName("UserAlreadyInRoom")] UserAlreadyInRoom = 8,
+    [pbr::OriginalName("UserAlreadyInRoom")] UserAlreadyInRoom = 9,
   }
 
   public enum Sex {

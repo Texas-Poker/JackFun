@@ -3,25 +3,38 @@ package pojo
 import (
 	"fmt"
 	"github.com/go-redis/redis"
+	"github.com/topfreegames/pitaya/session"
 	"server/dao/hashtree"
 	"server/dao/redis_helper"
-	"server/pb/pb_enum"
 )
 
 //User 执久层用户数据结构User(pojo_user)
 type User struct {
 	hashtree.Root
 	Id       hashtree.Int64  `bson:"Id"`
-	Account  hashtree.String `bson:"Account"`
-	Password hashtree.String `bson:"Password"`
 	NickName hashtree.String `bson:"NickName"`
 	Icon     hashtree.String `bson:"Icon"`
 	Age      hashtree.Int64  `bson:"Age"`
-	Sex      pb_enum.Sex     `bson:"Sex"`
+	Sex      hashtree.Int64     `bson:"Sex"`
 	Lv       hashtree.Int64  `bson:"Lv"`
 	Gold     hashtree.Int64  `bson:"Gold"`
 	Diamond  hashtree.Int64  `bson:"Diamond"`
 	Token    hashtree.String `bson:"Token"`
+}
+
+func GetUserFromSession(s *session.Session) *User {
+	if s == nil {
+		return nil
+	}
+	v := s.Value("pojo_session")
+	if v == nil {
+		return nil
+	}
+	return v.(*User)
+}
+
+func SetUserToSession(s *session.Session, u *User){
+	s.Set("pojo_session", u)
 }
 
 // ManualSave 手动存redis

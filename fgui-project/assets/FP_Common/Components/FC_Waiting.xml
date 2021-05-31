@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720" pivot="0.5,0.5" anchor="true">
+  <displayList>
+    <image id="n4_bkrb" name="background" src="iy7u4" fileName="Images/T_Common_White.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="1280,720" group="n5_bkrb" alpha="0"/>
+    <image id="n6_bkrb" name="Mask" src="iy7u4" fileName="Images/T_Common_White.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="180,180" group="n5_bkrb" alpha="0.3" color="#000000"/>
+    <image id="n0_bkrb" name="Circle" src="bkrbr" fileName="Images/T_Common_Waiting_Circle.png" xy="639,359" pivot="0.5,0.5" anchor="true" group="n5_bkrb"/>
+    <image id="n1_bkrb" name="Chip" src="bkrbs" fileName="Images/T_Common_Waiting_Chip.png" xy="639,360" pivot="0.5,0.5" anchor="true" group="n5_bkrb"/>
+    <loader id="n2_bkrb" name="Suit" xy="640,360" pivot="0.5,0.5" anchor="true" size="36,36" group="n5_bkrb" url="ui://ya2dwlr4bkrbq" autoSize="true"/>
+    <text id="n3_bkrb" name="LabProgress" xy="640,424" pivot="0.5,0.5" anchor="true" size="10,26" group="n5_bkrb" fontSize="18" color="#ffffff" align="center" text=""/>
+    <group id="n5_bkrb" name="n5" xy="0,0" size="1280,720"/>
+  </displayList>
+  <transition name="WaitingTween" autoPlay="true" autoPlayRepeat="-1">
+    <item time="0" type="Icon" target="n2_bkrb" value="ui://ya2dwlr4bkrbq"/>
+    <item time="0" type="Rotation" target="n0_bkrb" tween="true" startValue="0" endValue="360" duration="48" ease="Linear"/>
+    <item time="0" type="Rotation" target="n1_bkrb" tween="true" startValue="0" endValue="-360" duration="48" ease="Linear"/>
+    <item time="12" type="Icon" target="n2_bkrb" value="ui://ya2dwlr4bkrbp"/>
+    <item time="24" type="Icon" target="n2_bkrb" value="ui://ya2dwlr4bkrbo"/>
+    <item time="36" type="Icon" target="n2_bkrb" value="ui://ya2dwlr4bkrbn"/>
+    <item time="48" type="Icon" target="n2_bkrb" value="ui://ya2dwlr4bkrbq"/>
+  </transition>
+</component>

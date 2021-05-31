@@ -1,0 +1,16 @@
+{
+  "objectStatus": {
+    "n2_bpdf": {
+      "locked": true
+    },
+    "n0_bpdf": {
+      "locked": true
+    },
+    "n4_bpdf": {
+      "locked": true
+    },
+    "n3_bpdf": {
+      "locked": true
+    }
+  }
+}

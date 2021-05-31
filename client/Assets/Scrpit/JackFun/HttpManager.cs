@@ -1,3 +1,6 @@
+using System;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using Google.Protobuf;
 using UnityEngine;
 
@@ -7,10 +10,9 @@ namespace JackFun
     {
         public static void Init()
         {
-            Entry();
         }
 
-        private static void Entry()
+        public static void Entry(Action callback)
         {
             var req = new Pb.Http.ReqEntry {Secret = "天王盖地虎,宝塔镇河妖"};
             UnityHTTP.Request theRequest = new UnityHTTP.Request("post", "http://127.0.0.1:8088/entry", req.ToByteArray());
@@ -31,11 +33,11 @@ namespace JackFun
                 JackFunUrl.TcpPort = resp.TcpUrl.Port;
                 Debug.Log(resp.ToString());
 
-                Register();
+                callback();
             });
         }
 
-        private static void Register()
+        public static void Register()
         {
             var req = new Pb.Http.ReqRegister() {Account = "jack", Password = "123"};
             UnityHTTP.Request theRequest = new UnityHTTP.Request("post", JackFunUrl.RegisterUrl, req.ToByteArray());
@@ -47,21 +49,18 @@ namespace JackFun
                 if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                 {
                     Debug.LogError("register error," + resp);
-                    Login();
                     return;
                 }
 
 
                 Debug.Log("register result=" + resp);
-
-                Login();
             });
         }
 
 
-        private static void Login()
+        public static void Login(string account, string password, Action callback = null)
         {
-            var req = new Pb.Http.ReqLogin() {Account = "jack", Password = "123"};
+            var req = new Pb.Http.ReqLogin() {Account = account, Password = password};
             UnityHTTP.Request theRequest = new UnityHTTP.Request("post", JackFunUrl.LoginUrl, req.ToByteArray());
             theRequest.Send((request) =>
             {
@@ -71,6 +70,7 @@ namespace JackFun
                 if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                 {
                     Debug.LogError(resp.ErrCode.ToString());
+
                     return;
                 }
 
@@ -78,6 +78,9 @@ namespace JackFun
                 Debug.Log("login result=" + resp);
                 Session.Token = resp.Token;
                 NetPitaya.Connect();
+
+
+                callback?.Invoke();
             });
         }
     }

@@ -64,7 +64,7 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 
 	resp := new(pb_http.RespRegister)
 	//判断是否是空找得到数据
-	if isAlreadyRegister, _ := this.db_reigster_handler.CheckIsRegister(req.Account); isAlreadyRegister {
+	if isAlreadyRegister, _ := this.redisModule.CheckIsRegister(req.Account); isAlreadyRegister {
 		resp.ErrCode = pb_enum.ErrorCode_RegisterAccountExit
 	} else {
 		n, err := snowflake.NewNode(1)
@@ -72,7 +72,7 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 			println(err)
 		}
 		id := n.Generate().Int64()
-		this.db_reigster_handler.NewRegister(req.Account, req.Password, id)
+		this.redisModule.NewRegister(req.Account, req.Password, id)
 		resp.ErrCode = pb_enum.ErrorCode_OK
 	}
 
@@ -94,19 +94,19 @@ func (this *ComponentHttp) login(w http.ResponseWriter, r *http.Request) {
 
 	resp := new(pb_http.RespLogin)
 	//判断是否是空找得到数据
-	if isExist, _ := this.db_reigster_handler.CheckIsRegister(req.Account); !isExist {
-		resp.ErrCode = pb_enum.ErrorCode_Default
+	if isExist, _ := this.redisModule.CheckIsRegister(req.Account); !isExist {
+		resp.ErrCode = pb_enum.ErrorCode_LoginAccountUnExixtent
 	} else {
-		if password, id, err := this.db_reigster_handler.GetRegisterInfoByAccount(req.Account); err == nil {
+		if password, id, err := this.redisModule.GetRegisterInfoByAccount(req.Account); err == nil {
 			if req.Password == password {
 				token := genToken(req.Account, req.Password)
-				this.db_login_handler.DeleteTokenByUID(id)
-				this.db_login_handler.SaveLoginDB(id, token)
+				this.redisModule.DeleteTokenByUID(id)
+				this.redisModule.SaveLoginDB(id, token)
 				//将account+时间生成token
 				resp.Token = token
 				resp.ErrCode = pb_enum.ErrorCode_OK
 			} else {
-				resp.ErrCode = pb_enum.ErrorCode_LoginAccountOrPasswordError
+				resp.ErrCode = pb_enum.ErrorCode_LoginPasswordError
 			}
 		}
 	}

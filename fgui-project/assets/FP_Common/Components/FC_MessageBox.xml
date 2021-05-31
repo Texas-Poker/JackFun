@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720" pivot="0.5,0.5" anchor="true">
+  <controller name="BtnType" alias="按钮类型" pages="0,OneBtn,1,TwoBtn" selected="0">
+    <remark page="0" value="只有一个确定按钮"/>
+    <remark page="1" value="一个确认按钮，一个取消按钮"/>
+  </controller>
+  <displayList>
+    <image id="n0_iy7u" name="background" src="iy7u4" fileName="Images/T_Common_White.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="1490,720" alpha="0.4" color="#000000">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n37_bkrb" name="Bg" src="bkrbm" fileName="Images/T_Common_MessageBox_Bg.png" xy="346,206" group="n38_bkrb"/>
+    <text id="n32_if9g" name="LabelTitle" xy="360,213" size="560,60" group="n38_bkrb" fontSize="30" color="#cccccc" align="center" vAlign="middle" autoSize="none" text="标题"/>
+    <text id="n5_iy7u" name="LabelContent" xy="360,290" size="560,127" group="n38_bkrb" fontSize="24" color="#cccccc" align="center" vAlign="middle" autoSize="shrink" text="你今天喝了吗？"/>
+    <component id="n34_nlbg" name="BtnNo" src="nlbgb" fileName="Components/BtnNo.xml" xy="780,465" group="n38_bkrb">
+      <gearDisplay controller="BtnType" pages="1"/>
+    </component>
+    <component id="n33_nlbg" name="BtnYes" src="nlbga" fileName="Components/BtnYes.xml" xy="500,465" group="n38_bkrb">
+      <gearDisplay controller="BtnType" pages="1"/>
+    </component>
+    <component id="n39_bkrb" name="BtnOK" src="nlbga" fileName="Components/BtnYes.xml" xy="640,465" group="n38_bkrb">
+      <gearDisplay controller="BtnType" pages="0"/>
+    </component>
+    <group id="n38_bkrb" name="n38" xy="346,206" size="588,308" advanced="true">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </group>
+  </displayList>
+</component>

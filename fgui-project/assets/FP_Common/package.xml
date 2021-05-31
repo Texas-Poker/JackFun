@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ya2dwlr4">
+  <resources>
+    <image id="iy7u4" name="T_Common_White.png" path="/Images/" scale="9grid" scale9grid="5,5,6,6"/>
+    <component id="iy7u5" name="FC_MessageBox.xml" path="/Components/" exported="true"/>
+    <component id="g2og9" name="FC_Tips.xml" path="/Components/" exported="true"/>
+    <component id="nlbga" name="BtnYes.xml" path="/Components/"/>
+    <component id="nlbgb" name="BtnNo.xml" path="/Components/"/>
+    <image id="bkrbg" name="T_Common_MessageBox_Btn_1.png" path="/Images/"/>
+    <image id="bkrbh" name="T_Common_MessageBox_Btn_2.png" path="/Images/"/>
+    <image id="bkrbm" name="T_Common_MessageBox_Bg.png" path="/Images/"/>
+    <image id="bkrbn" name="T_Common_Waiting_Icon_1.png" path="/Images/"/>
+    <image id="bkrbo" name="T_Common_Waiting_Icon_2.png" path="/Images/"/>
+    <image id="bkrbp" name="T_Common_Waiting_Icon_3.png" path="/Images/"/>
+    <image id="bkrbq" name="T_Common_Waiting_Icon_4.png" path="/Images/"/>
+    <image id="bkrbr" name="T_Common_Waiting_Circle.png" path="/Images/"/>
+    <image id="bkrbs" name="T_Common_Waiting_Chip.png" path="/Images/"/>
+    <image id="bkrbt" name="T_Common_Tips_Bg.png" path="/Images/"/>
+    <component id="bkrbu" name="FC_Waiting.xml" path="/Components/" exported="true"/>
+    <component id="j0osc" name="FC_Load_Tween.xml" path="/Components/"/>
+    <component id="p2892" name="FC_Loading.xml" path="/Components/" exported="true"/>
+    <component id="p2897" name="FC_Progress.xml" path="/Components/"/>
+    <image id="j0os8" name="T_Common_Loading_FP.png" path="/Images/"/>
+    <image id="j0osa" name="T_Common_Loading_HT.png" path="/Images/"/>
+    <image id="j0os9" name="T_Common_Loading_HoT.png" path="/Images/"/>
+    <image id="j0osd" name="T_Common_Loading_Load_Bg.png" path="/Images/" scale="9grid" scale9grid="42,0,84,198"/>
+    <image id="j0osb" name="T_Common_Loading_MH.png" path="/Images/"/>
+    <image id="p2895" name="T_Common_Loading_Progress.png" path="/Images/" scale="9grid" scale9grid="10,8,1,2"/>
+    <image id="p2894" name="T_Common_Loading_ProgressBg.png" path="/Images/" scale="9grid" scale9grid="14,12,2,1"/>
+    <sound id="mlwsv" name="S_Btn_Click.wav" path="/Sound/" exported="true"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

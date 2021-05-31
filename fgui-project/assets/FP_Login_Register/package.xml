@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="mi6qcj1d">
+  <resources>
+    <component id="w7ku0" name="FC_Login_Register.xml" path="/Components/" exported="true"/>
+    <component id="w7ku3" name="Btn.xml" path="/Components/"/>
+    <image id="jarj5" name="T_Entry_Login_Bg.png" path="/Images/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

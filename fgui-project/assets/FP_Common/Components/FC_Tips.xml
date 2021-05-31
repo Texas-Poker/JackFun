@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720">
+  <displayList>
+    <image id="n4_bkrb" name="Bg" src="bkrbt" fileName="Images/T_Common_Tips_Bg.png" xy="120,326" group="n5_bkrb"/>
+    <text id="n2_g2og" name="Label" xy="140,340" size="1000,40" group="n5_bkrb" font="Arial Unicode MS" fontSize="22" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" text="提示信息"/>
+    <group id="n5_bkrb" name="n5" xy="120,326" size="1039,68"/>
+  </displayList>
+  <transition name="move_tween" autoPlay="true">
+    <item time="0" type="Alpha" tween="true" startValue="0" endValue="1" duration="6"/>
+    <item time="0" type="XY" tween="true" startValue="0,0" endValue="0,-150" duration="36"/>
+    <item time="6" type="Alpha" tween="true" startValue="1" endValue="1" duration="24"/>
+    <item time="30" type="Alpha" tween="true" startValue="1" endValue="0" duration="7"/>
+    <item time="37" type="XY" value="0,0"/>
+  </transition>
+</component>

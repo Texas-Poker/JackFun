@@ -5,24 +5,22 @@ import (
 	"github.com/topfreegames/pitaya/component"
 	"log"
 	"net/http"
-	"server/dao/db_handler"
+	"server/dao/redis_module"
 )
 
 type ComponentHttp struct {
 	component.Base
-	db_reigster_handler *db_handler.RedisRegisterHandler
-	db_login_handler  *db_handler.RedisLoginHandler
+	redisModule *redis_module.RedisModule
+
 }
 
 func (this *ComponentHttp) Init() {
 	this.startHttpServer()
-	if dbHandler, err := pitaya.GetModule("dbHandlerRegister"); err == nil {
-		this.db_reigster_handler = dbHandler.(*db_handler.RedisRegisterHandler)
+	if module, err := pitaya.GetModule("redisModule"); err == nil {
+		this.redisModule = module.(*redis_module.RedisModule)
 	}
 
-	if dbHandler, err := pitaya.GetModule("dbLoginRegister"); err == nil {
-		this.db_login_handler = dbHandler.(*db_handler.RedisLoginHandler)
-	}
+
 }
 
 func NewComponentHttp() *ComponentHttp {

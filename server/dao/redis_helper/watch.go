@@ -8,7 +8,7 @@ import (
 var watchRetryTimes int
 
 func InitWatch() {
-	watchRetryTimes = pitaya.GetConfig().GetInt("pitaya.modules.redisStorage.client.retry")
+	watchRetryTimes = pitaya.GetConfig().GetInt("pitaya.modules.redis.default.client.retry")
 	if watchRetryTimes == 0 {
 		panic("error watchRetryTimes")
 	}

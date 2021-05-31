@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="160,50">
+  <displayList>
+    <image id="n0_j0os" name="n0" src="j0os9" fileName="Images/T_Main_HoT.png" xy="0,5" pivot="0.5,0.5"/>
+    <image id="n1_j0os" name="n1" src="j0os8" fileName="Images/T_Main_FP.png" xy="40,3" pivot="0.5,0.5"/>
+    <image id="n2_j0os" name="n2" src="j0osa" fileName="Images/T_Main_HT.png" xy="80,2" pivot="0.5,0.5"/>
+    <image id="n3_j0os" name="n3" src="j0osb" fileName="Images/T_Main_MH.png" xy="120,0" pivot="0.5,0.5"/>
+  </displayList>
+  <transition name="t0" autoPlay="true" autoPlayRepeat="-1">
+    <item time="0" type="Skew" target="n0_j0os" tween="true" startValue="0,0" endValue="0,180" duration="6"/>
+    <item time="0" type="XY" target="n0_j0os" tween="true" startValue="0,5" endValue="0,-40" duration="6" ease="Sine.Out"/>
+    <item time="3" type="Skew" target="n1_j0os" tween="true" startValue="0,0" endValue="0,180" duration="6"/>
+    <item time="3" type="XY" target="n1_j0os" tween="true" startValue="40,3" endValue="40,-43" duration="6" ease="Sine.Out"/>
+    <item time="6" type="Skew" target="n0_j0os" tween="true" startValue="0,180" endValue="0,360" duration="6"/>
+    <item time="6" type="Skew" target="n2_j0os" tween="true" startValue="0,0" endValue="0,180" duration="7"/>
+    <item time="6" type="XY" target="n0_j0os" tween="true" startValue="0,-40" endValue="0,5" duration="6" ease="Sine.Out"/>
+    <item time="6" type="XY" target="n2_j0os" tween="true" startValue="80,2" endValue="80,-42" duration="7" ease="Sine.Out"/>
+    <item time="9" type="Skew" target="n1_j0os" tween="true" startValue="0,180" endValue="0,360" duration="6"/>
+    <item time="9" type="Skew" target="n3_j0os" tween="true" startValue="0,0" endValue="0,180" duration="6"/>
+    <item time="9" type="XY" target="n1_j0os" tween="true" startValue="40,-43" endValue="40,3" duration="6" ease="Sine.Out"/>
+    <item time="9" type="XY" target="n3_j0os" tween="true" startValue="120,0" endValue="120,-40" duration="6" ease="Sine.Out"/>
+    <item time="12" type="Skew" target="n0_j0os" value="0,360"/>
+    <item time="13" type="Skew" target="n2_j0os" tween="true" startValue="0,180" endValue="0,360" duration="6"/>
+    <item time="13" type="XY" target="n2_j0os" tween="true" startValue="80,-42" endValue="80,2" duration="6" ease="Sine.Out"/>
+    <item time="15" type="Skew" target="n1_j0os" value="0,360"/>
+    <item time="15" type="Skew" target="n3_j0os" tween="true" startValue="0,180" endValue="0,360" duration="6"/>
+    <item time="15" type="XY" target="n3_j0os" tween="true" startValue="120,-40" endValue="120,0" duration="6" ease="Sine.Out"/>
+    <item time="19" type="Skew" target="n2_j0os" value="0,360"/>
+    <item time="21" type="Skew" target="n3_j0os" value="0,360"/>
+  </transition>
+</component>

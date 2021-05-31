@@ -11,7 +11,7 @@ import (
 	"github.com/topfreegames/pitaya/constants"
 	"github.com/topfreegames/pitaya/modules"
 	"github.com/topfreegames/pitaya/serialize/protobuf"
-	"server/dao/db_handler"
+	"server/dao/redis_module"
 	"server/jcak_constants"
 	"server/server_http"
 	"server/server_lobby"
@@ -95,31 +95,32 @@ func setConfig() *viper.Viper {
 	//具体默认配置见：https://pitaya.readthedocs.io/en/latest/configuration.html
 	configs := viper.New()
 
-	//redis conf
-	configs.Set("pitaya.modules.redisStorage.client.host", "127.0.0.1")
-	configs.Set("pitaya.modules.redisStorage.client.port", 6379)
-	configs.Set("pitaya.modules.redisStorage.client.db", 0)
-	configs.Set("pitaya.modules.redisStorage.client.retry",5)
-	configs.Set("pitaya.modules.redisStorage.client.size",500)
-	configs.Set("pitaya.modules.redisStorage.client.idle",10)
-	configs.Set("pitaya.modules.redisStorage.client.idle","")
+	//1.redis各项配置
+	//1.1 redis的host
+	configs.Set("pitaya.modules.redis.default.client.host", "127.0.0.1")
+	//1.1 redis的port
+	configs.Set("pitaya.modules.redis.default.client.port", 6379)
+	//1.1 redis的哪个数据库，这里使用默认0的
+	configs.Set("pitaya.modules.redis.default.client.db", 0)
+	//1.1 redis的重试次数
+	configs.Set("pitaya.modules.redis.default.client.retry",5)
+	//1.1 redis的size,用于初始化redis
+	configs.Set("pitaya.modules.redis.default.client.size",500)
+	//1.1
+	configs.Set("pitaya.modules.redis.default.client.idle",10)
 
-	//grpc的端口（实现上在默认的设置中，端口即是3434，见上面的配置地址）
+	//2.grpc的配置
+	//2.1.grpc的端口（实现上在默认的设置中，端口即是3434，见上面的配置地址）
 	configs.Set("pitaya.cluster.rpc.server.grpc.port", 3434)
 	return configs
 }
 
 func registerModule()  {
-
 	//绑定etcd的模块
 	bs := modules.NewETCDBindingStorage(pitaya.GetServer(), pitaya.GetConfig())
 	pitaya.RegisterModule(bs, "bindingsStorage")
 
 	//处理注册redis的模块
-	dbHandlerRegister := db_handler.NewDBRegisterHandler()
-	pitaya.RegisterModule(dbHandlerRegister,"dbHandlerRegister")
-
-	//处理登录redis的模块
-	dbHandlerLogin := db_handler.NewDBLoginHandler()
-	pitaya.RegisterModule(dbHandlerLogin,"dbHandlerLogin")
+	redisModule := redis_module.NewRedisModule()
+	pitaya.RegisterModule(redisModule,"redisModule")
 }

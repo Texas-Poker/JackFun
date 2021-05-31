@@ -48,12 +48,13 @@ func getClientPool(typ ClientType) (*clientPool, error) {
 // NewClientOptions create new client options by client type
 func NewClientOptions(typ ClientType) *redis.Options {
 	config:=pitaya.GetConfig()
-	host := config.GetString("pitaya.modules.redisStorage.client.host")
-	port := config.GetInt("pitaya.modules.redisStorage.client.port")
-	auth := config.GetString("pitaya.modules.redisStorage.client.aut")
-	db := config.GetInt("pitaya.modules.redisStorage.client.db")
-	size := config.GetInt("pitaya.modules.redisStorage.client.size")
-	idle := config.GetInt("pitaya.modules.redisStorage.client.idle")
+	configStr("pipeline", typ, "redis")
+	host := config.GetString("pitaya.modules.redis.default.client.host")
+	port := config.GetInt("pitaya.modules.redis.default.client.port")
+	auth := config.GetString("pitaya.modules.redis.default.client.aut")
+	db := config.GetInt("pitaya.modules.redis.default.client.db")
+	size := config.GetInt("pitaya.modules.redis.default.client.size")
+	idle := config.GetInt("pitaya.modules.redis.default.client.idle")
 
 	return &redis.Options{
 		Addr:         fmt.Sprintf("%s:%d", host, port),

@@ -5,13 +5,17 @@ import (
 	"server/system"
 )
 
+//ClientType
 const (
 	// Default stands for redis.default in viper
 	Default ClientType = "default"
 
 	// Cli stands for redis.cli in viper
 	Cli ClientType = "cli"
+)
 
+//AsyncPipelineType
+const (
 	// User stands for pipeline.user in viper
 	User AsyncPipelineType = "user"
 )

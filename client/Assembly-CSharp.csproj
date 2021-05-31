@@ -60,7 +60,11 @@
      <Compile Include="Assets\Scrpit\JackFun\HttpManager.cs" />
      <Compile Include="Assets\Pb\Enum.cs" />
      <Compile Include="Assets\Pb\Lobby.cs" />
-     <Compile Include="Assets\Scrpit\JackFun\JackFun.cs" />
+     <Compile Include="Assets\Scrpit\Main.cs" />
+     <Compile Include="Assets\Scrpit\UI\UIUtil.cs" />
+     <Compile Include="Assets\Scrpit\UI\UILoading.cs" />
+     <Compile Include="Assets\Scrpit\UI\UITips.cs" />
+     <Compile Include="Assets\Scrpit\Login\UILogin.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

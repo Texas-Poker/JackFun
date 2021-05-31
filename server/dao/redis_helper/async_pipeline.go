@@ -2,10 +2,8 @@ package redis_helper
 
 import (
 	"fmt"
-
 	"github.com/go-redis/redis"
 	"github.com/spf13/viper"
-	"github.com/topfreegames/pitaya"
 	"github.com/topfreegames/pitaya/logger"
 	"server/system"
 	"strings"
@@ -91,8 +89,7 @@ func (p *asyncPipeline) DoCmds(cmders []redis.Cmder) error {
 // DoCmd is a thread-safe func.
 // It pushes cmders into queue, and exec it async.
 // Additionally, it will callback after exec.
-func (p *asyncPipeline) DoCmdWithCallback(cmder redis.Cmder,
-	callback func(redis.Cmder) error) error {
+func (p *asyncPipeline) DoCmdWithCallback(cmder redis.Cmder, callback func(redis.Cmder) error) error {
 
 	if cmder == nil {
 		return fmt.Errorf("Cmder passing in is nil")
@@ -119,8 +116,7 @@ func (p *asyncPipeline) DoCmdWithCallback(cmder redis.Cmder,
 // DoCmdsWithCallback is a thread-safe func.
 // It pushes cmders into queue, and exec it async.
 // Additionally, it will callback after exec.
-func (p *asyncPipeline) DoCmdsWithCallback(cmders []redis.Cmder,
-	callback func([]redis.Cmder) error) error {
+func (p *asyncPipeline) DoCmdsWithCallback(cmders []redis.Cmder, callback func([]redis.Cmder) error) error {
 
 	for _, cmder := range cmders {
 		if cmder == nil {
@@ -144,7 +140,7 @@ func (p *asyncPipeline) Close() {
 
 func (p *asyncPipeline) process(pCmd *asyncPipelineCmd) {
 	for _, cmder := range pCmd.cmders {
-		if err := p.pipeliner.Process( cmder); err != nil {
+		if err := p.pipeliner.Process(cmder); err != nil {
 			// Just a cmd error, continuing.
 			logger.Log.Errorf("Redis cmder %v error: %v", cmder.Args, err)
 		} else {
@@ -260,21 +256,16 @@ func getAsyncPipelinePool(typ AsyncPipelineType) (*asyncPipelinePool, error) {
 }
 
 func newAsyncPipelineOptions(typ AsyncPipelineType) *asyncPipelineOptions {
-
-
-
-	ClientTypeKey:= configStr("pipeline", typ, "redis")
-
-	clientTyp := pitaya.GetConfig().GetString(ClientTypeKey)
-	parallel := pitaya.GetConfig().GetInt(configStr("pipeline", typ, "parallel"))
-	tick := pitaya.GetConfig().GetInt(configStr("pipeline", typ, "tick"))
-	queued := pitaya.GetConfig().GetInt(configStr("pipeline", typ, "queued"))
-
-	return &asyncPipelineOptions{
-		clientTyp: clientTyp,
-		parallel:  int(parallel),
-		tick:      int(tick),
-		queued:    int(queued),
+	switch typ {
+	case User:
+		return &asyncPipelineOptions{
+			clientTyp: "default",
+			parallel:  10,
+			tick:      100,
+			queued:    10000,
+		}
+	default:
+		return nil
 	}
 }
 

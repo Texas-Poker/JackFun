@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720">
+  <displayList>
+    <image id="n10_qxde" name="n10" src="iy7u4" fileName="Images/T_Common_White.png" xy="0,0" size="1280,720" color="#6699cc"/>
+    <text id="n6_j0os" name="LabVersion" xy="0,682" size="160,32" fontSize="22" color="#ffffff" autoSize="none" text="Version-0.0.2"/>
+    <text id="n9_r6bm" name="n9" xy="468,200" size="344,79" fontSize="60" color="#ffff00" text="Loading......"/>
+  </displayList>
+  <transition name="LogoTween" autoPlay="true"/>
+</component>

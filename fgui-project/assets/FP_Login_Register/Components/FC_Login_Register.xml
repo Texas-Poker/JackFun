@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720" designImageLayer="1" bgColor="#ff0000">
+  <controller name="status" pages="0,login,1,regist" selected="0"/>
+  <displayList>
+    <image id="n26_jarj" name="background" src="jarj5" fileName="Images/T_Login_Bg.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="1490,720">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n0_w7ku" name="n0" xy="554,56" pivot="0.5,0.5" size="180,59" group="n21_ot8r" fontSize="44" color="#ffff00" align="center" vAlign="middle" strokeColor="#000000" text="登录界面">
+      <gearColor controller="status" pages="0" values="#ffff00,#000000" default="#ff0000,#000000"/>
+      <gearText controller="status" pages="1" values="注册界面" default="登录界面"/>
+    </text>
+    <component id="n10_w7ku" name="BtnLogin" src="w7ku3" fileName="Components/Btn.xml" xy="564,454" group="n12_w7ku">
+      <Button title="登录" titleFontSize="30"/>
+    </component>
+    <component id="n11_w7ku" name="BtnToRegister" src="w7ku3" fileName="Components/Btn.xml" xy="564,559" group="n12_w7ku">
+      <Button title="去注册" titleFontSize="30"/>
+    </component>
+    <group id="n12_w7ku" name="n5" xy="564,454" size="160,165" group="n21_ot8r" advanced="true">
+      <gearDisplay controller="status" pages="0"/>
+    </group>
+    <component id="n13_w7ku" name="BtnRegister" src="w7ku3" fileName="Components/Btn.xml" xy="565,454" group="n15_w7ku">
+      <Button title="注册" titleFontSize="30"/>
+    </component>
+    <component id="n14_w7ku" name="BtnBackLogin" src="w7ku3" fileName="Components/Btn.xml" xy="565,559" group="n15_w7ku">
+      <Button title="返回" titleFontSize="30"/>
+    </component>
+    <group id="n15_w7ku" name="n6" xy="565,454" size="160,165" group="n21_ot8r" advanced="true">
+      <gearDisplay controller="status" pages="1"/>
+    </group>
+    <text id="n1_w7ku" name="n1" xy="415,170" size="94,42" group="n19_ot8r" fontSize="30" color="#ffffff" align="right" text="用户名"/>
+    <graph id="n5_w7ku" name="n7" xy="535,170" size="286,43" group="n6_w7ku" type="rect"/>
+    <text id="n3_w7ku" name="AccountInput" xy="535,170" size="284,42" group="n6_w7ku" fontSize="30" autoSize="none" text="" input="true"/>
+    <group id="n6_w7ku" name="n3" xy="535,170" size="286,43" group="n19_ot8r" advanced="true"/>
+    <group id="n19_ot8r" name="n19" xy="415,170" size="405,43" group="n21_ot8r" advanced="true"/>
+    <text id="n2_w7ku" name="n2" xy="447,250" size="64,42" group="n20_ot8r" fontSize="30" color="#ffffff" align="right" autoSize="none" text="密码&#xA;"/>
+    <graph id="n7_w7ku" name="n8" xy="535,250" size="286,43" group="n8_w7ku" type="rect"/>
+    <text id="n4_w7ku" name="PasswordInput" xy="535,251" size="284,42" group="n8_w7ku" fontSize="30" autoSize="none" text="" input="true"/>
+    <group id="n8_w7ku" name="n4" xy="535,250" size="286,43" group="n20_ot8r" advanced="true"/>
+    <group id="n20_ot8r" name="n20" xy="447,250" size="374,43" group="n21_ot8r" advanced="true"/>
+    <group id="n21_ot8r" name="n21" xy="415,56" size="406,563" advanced="true">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </group>
+  </displayList>
+</component>

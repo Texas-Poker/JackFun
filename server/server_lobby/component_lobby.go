@@ -4,19 +4,19 @@ import (
 	"context"
 	"github.com/topfreegames/pitaya"
 	"github.com/topfreegames/pitaya/component"
-	"server/dao/db_handler"
+	"server/dao/redis_module"
 	"server/pb/pb_enum"
 	"server/pb/pb_lobby"
 )
 
 type ComponentLobby struct {
 	component.Base
-	db_login_handler  *db_handler.RedisLoginHandler
+	redisModule *redis_module.RedisModule
 }
 
 func (this *ComponentLobby) Init() {
-	if dbHandler, err := pitaya.GetModule("dbLoginRegister"); err == nil {
-		this.db_login_handler = dbHandler.(*db_handler.RedisLoginHandler)
+	if dbHandler, err := pitaya.GetModule("redisModule"); err == nil {
+		this.redisModule = dbHandler.(*redis_module.RedisModule)
 	}
 }
 
