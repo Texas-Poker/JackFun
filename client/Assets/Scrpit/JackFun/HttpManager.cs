@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Google.Protobuf;
+using JackFun.UI;
 using UnityEngine;
 
 namespace JackFun
@@ -24,6 +25,7 @@ namespace JackFun
                 if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                 {
                     Debug.LogError(resp.ErrCode.ToString());
+                    UITips.Open(ErrorCodeUtil.ToString(resp.ErrCode));
                     return;
                 }
 
@@ -37,9 +39,9 @@ namespace JackFun
             });
         }
 
-        public static void Register()
+        public static void Register(string account, string password, Action callback = null)
         {
-            var req = new Pb.Http.ReqRegister() {Account = "jack", Password = "123"};
+            var req = new Pb.Http.ReqRegister() {Account = account, Password = password};
             UnityHTTP.Request theRequest = new UnityHTTP.Request("post", JackFunUrl.RegisterUrl, req.ToByteArray());
             theRequest.Send((request) =>
             {
@@ -49,10 +51,10 @@ namespace JackFun
                 if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                 {
                     Debug.LogError("register error," + resp);
+                    UITips.Open(ErrorCodeUtil.ToString(resp.ErrCode));
                     return;
                 }
-
-
+                
                 Debug.Log("register result=" + resp);
             });
         }
@@ -70,7 +72,7 @@ namespace JackFun
                 if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                 {
                     Debug.LogError(resp.ErrCode.ToString());
-
+                    UITips.Open(ErrorCodeUtil.ToString(resp.ErrCode));
                     return;
                 }
 
@@ -78,8 +80,7 @@ namespace JackFun
                 Debug.Log("login result=" + resp);
                 Session.Token = resp.Token;
                 NetPitaya.Connect();
-
-
+                
                 callback?.Invoke();
             });
         }

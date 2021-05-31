@@ -25,15 +25,18 @@ namespace Pb.Lobby {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cgtsb2JieS5wcm90bxIIcGJfbG9iYnkaCmVudW0ucHJvdG8iGAoHUmVxQXV0",
-            "aBINCgVUb2tlbhgBIAEoCSIvCghSZXNwQXV0aBIjCgdFcnJDb2RlGAEgASgO",
-            "MhIucGJfZW51bS5FcnJvckNvZGUiDgoMUmVxTG9iYnlJbmZvIjQKDVJlc3BM",
-            "b2JieUluZm8SIwoHRXJyQ29kZRgBIAEoDjISLnBiX2VudW0uRXJyb3JDb2Rl",
-            "Qh9aEnNlcnZlci9wYi9wYl9sb2JieaoCCFBiLkxvYmJ5YgZwcm90bzM="));
+            "aBINCgVUb2tlbhgBIAEoCSKUAQoIUmVzcEF1dGgSIwoHRXJyQ29kZRgBIAEo",
+            "DjISLnBiX2VudW0uRXJyb3JDb2RlEgsKA1VJRBgCIAEoAxIQCghOaWNrTmFt",
+            "ZRgDIAEoCRIZCgNTZXgYBCABKA4yDC5wYl9lbnVtLlNleBIMCgRHb2xkGAUg",
+            "ASgNEg8KB0RpYW1vbmQYBiABKA0SCgoCTHYYByABKA0iDgoMUmVxTG9iYnlJ",
+            "bmZvIjQKDVJlc3BMb2JieUluZm8SIwoHRXJyQ29kZRgBIAEoDjISLnBiX2Vu",
+            "dW0uRXJyb3JDb2RlQh9aEnNlcnZlci9wYi9wYl9sb2JieaoCCFBiLkxvYmJ5",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Pb.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.ReqAuth), global::Pb.Lobby.ReqAuth.Parser, new[]{ "Token" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespAuth), global::Pb.Lobby.RespAuth.Parser, new[]{ "ErrCode" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespAuth), global::Pb.Lobby.RespAuth.Parser, new[]{ "ErrCode", "UID", "NickName", "Sex", "Gold", "Diamond", "Lv" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.ReqLobbyInfo), global::Pb.Lobby.ReqLobbyInfo.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespLobbyInfo), global::Pb.Lobby.RespLobbyInfo.Parser, new[]{ "ErrCode" }, null, null, null, null)
           }));
@@ -244,6 +247,12 @@ namespace Pb.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RespAuth(RespAuth other) : this() {
       errCode_ = other.errCode_;
+      uID_ = other.uID_;
+      nickName_ = other.nickName_;
+      sex_ = other.sex_;
+      gold_ = other.gold_;
+      diamond_ = other.diamond_;
+      lv_ = other.lv_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -263,6 +272,72 @@ namespace Pb.Lobby {
       }
     }
 
+    /// <summary>Field number for the "UID" field.</summary>
+    public const int UIDFieldNumber = 2;
+    private long uID_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long UID {
+      get { return uID_; }
+      set {
+        uID_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "NickName" field.</summary>
+    public const int NickNameFieldNumber = 3;
+    private string nickName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string NickName {
+      get { return nickName_; }
+      set {
+        nickName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Sex" field.</summary>
+    public const int SexFieldNumber = 4;
+    private global::Pb.Enum.Sex sex_ = global::Pb.Enum.Sex.Unknow;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Pb.Enum.Sex Sex {
+      get { return sex_; }
+      set {
+        sex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Gold" field.</summary>
+    public const int GoldFieldNumber = 5;
+    private uint gold_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Gold {
+      get { return gold_; }
+      set {
+        gold_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Diamond" field.</summary>
+    public const int DiamondFieldNumber = 6;
+    private uint diamond_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Diamond {
+      get { return diamond_; }
+      set {
+        diamond_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Lv" field.</summary>
+    public const int LvFieldNumber = 7;
+    private uint lv_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Lv {
+      get { return lv_; }
+      set {
+        lv_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as RespAuth);
@@ -277,6 +352,12 @@ namespace Pb.Lobby {
         return true;
       }
       if (ErrCode != other.ErrCode) return false;
+      if (UID != other.UID) return false;
+      if (NickName != other.NickName) return false;
+      if (Sex != other.Sex) return false;
+      if (Gold != other.Gold) return false;
+      if (Diamond != other.Diamond) return false;
+      if (Lv != other.Lv) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -284,6 +365,12 @@ namespace Pb.Lobby {
     public override int GetHashCode() {
       int hash = 1;
       if (ErrCode != global::Pb.Enum.ErrorCode.Default) hash ^= ErrCode.GetHashCode();
+      if (UID != 0L) hash ^= UID.GetHashCode();
+      if (NickName.Length != 0) hash ^= NickName.GetHashCode();
+      if (Sex != global::Pb.Enum.Sex.Unknow) hash ^= Sex.GetHashCode();
+      if (Gold != 0) hash ^= Gold.GetHashCode();
+      if (Diamond != 0) hash ^= Diamond.GetHashCode();
+      if (Lv != 0) hash ^= Lv.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -304,6 +391,30 @@ namespace Pb.Lobby {
         output.WriteRawTag(8);
         output.WriteEnum((int) ErrCode);
       }
+      if (UID != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(UID);
+      }
+      if (NickName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(NickName);
+      }
+      if (Sex != global::Pb.Enum.Sex.Unknow) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) Sex);
+      }
+      if (Gold != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(Gold);
+      }
+      if (Diamond != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Diamond);
+      }
+      if (Lv != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(Lv);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -317,6 +428,30 @@ namespace Pb.Lobby {
         output.WriteRawTag(8);
         output.WriteEnum((int) ErrCode);
       }
+      if (UID != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(UID);
+      }
+      if (NickName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(NickName);
+      }
+      if (Sex != global::Pb.Enum.Sex.Unknow) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) Sex);
+      }
+      if (Gold != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(Gold);
+      }
+      if (Diamond != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Diamond);
+      }
+      if (Lv != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(Lv);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -328,6 +463,24 @@ namespace Pb.Lobby {
       int size = 0;
       if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ErrCode);
+      }
+      if (UID != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UID);
+      }
+      if (NickName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NickName);
+      }
+      if (Sex != global::Pb.Enum.Sex.Unknow) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Sex);
+      }
+      if (Gold != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gold);
+      }
+      if (Diamond != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Diamond);
+      }
+      if (Lv != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Lv);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -342,6 +495,24 @@ namespace Pb.Lobby {
       }
       if (other.ErrCode != global::Pb.Enum.ErrorCode.Default) {
         ErrCode = other.ErrCode;
+      }
+      if (other.UID != 0L) {
+        UID = other.UID;
+      }
+      if (other.NickName.Length != 0) {
+        NickName = other.NickName;
+      }
+      if (other.Sex != global::Pb.Enum.Sex.Unknow) {
+        Sex = other.Sex;
+      }
+      if (other.Gold != 0) {
+        Gold = other.Gold;
+      }
+      if (other.Diamond != 0) {
+        Diamond = other.Diamond;
+      }
+      if (other.Lv != 0) {
+        Lv = other.Lv;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -361,6 +532,30 @@ namespace Pb.Lobby {
             ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
             break;
           }
+          case 16: {
+            UID = input.ReadInt64();
+            break;
+          }
+          case 26: {
+            NickName = input.ReadString();
+            break;
+          }
+          case 32: {
+            Sex = (global::Pb.Enum.Sex) input.ReadEnum();
+            break;
+          }
+          case 40: {
+            Gold = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            Diamond = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            Lv = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -377,6 +572,30 @@ namespace Pb.Lobby {
             break;
           case 8: {
             ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
+            break;
+          }
+          case 16: {
+            UID = input.ReadInt64();
+            break;
+          }
+          case 26: {
+            NickName = input.ReadString();
+            break;
+          }
+          case 32: {
+            Sex = (global::Pb.Enum.Sex) input.ReadEnum();
+            break;
+          }
+          case 40: {
+            Gold = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            Diamond = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            Lv = input.ReadUInt32();
             break;
           }
         }

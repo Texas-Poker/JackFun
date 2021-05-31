@@ -6,8 +6,6 @@ import (
 	"strconv"
 )
 
-
-
 func (this *RedisModule) accountKey(account string) string {
 	return fmt.Sprintf("register[%v]", account)
 }
@@ -29,26 +27,26 @@ func (this *RedisModule) CheckIsRegister(account string) (bool, error) {
 }
 
 // GetRegisterInfoByAccount 通过account获取密码及用户Id
-func (this *RedisModule) GetRegisterInfoByAccount(account string) (password string, id int64, err error) {
+func (this *RedisModule) GetRegisterInfoByAccount(account string) (password string, uid int64, err error) {
 	c, err := redis_helper.GetClient(redis_helper.Default)
 	if err != nil {
 		return "", 0, err
 	}
-	data, err := c.HMGet(this.accountKey(account), "password", "id").Result()
+	data, err := c.HMGet(this.accountKey(account), "password", "uid").Result()
 	if err != nil {
 		return "", 0, err
 	}
 	password = data[0].(string)
 	pidStr := data[1].(string)
-	id, err = strconv.ParseInt(pidStr, 10, 64)
+	uid, err = strconv.ParseInt(pidStr, 10, 64)
 	if err != nil {
 		return "", 0, err
 	}
-	return password, id, nil
+	return password, uid, nil
 }
 
 //NewRegister 注册新的账号
-func (this *RedisModule) NewRegister(account, password string, id int64) error {
+func (this *RedisModule) NewRegister(account, password string, uid int64) error {
 	c, err := redis_helper.GetClient(redis_helper.Default)
 	if err != nil {
 		return err
@@ -56,7 +54,7 @@ func (this *RedisModule) NewRegister(account, password string, id int64) error {
 	_, err = c.HMSet(this.accountKey(account), map[string]interface{}{
 		"account":  account,
 		"password": password,
-		"id":       id,
+		"uid":      uid,
 	}).Result()
 	if err != nil {
 		return err

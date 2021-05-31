@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="kv75ch2m">
+  <resources>
+    <image id="p2898" name="T_Common_Head_Nan_1.png" path="/Images/" exported="true"/>
+    <image id="p289h" name="T_Common_Head_Nv_2.png" path="/Images/" exported="true"/>
+    <image id="p289i" name="T_Common_Head_Nv_3.png" path="/Images/" exported="true"/>
+    <image id="p289j" name="T_Common_Head_Nv_4.png" path="/Images/" exported="true"/>
+    <image id="p289k" name="T_Common_Head_Nv_5.png" path="/Images/" exported="true"/>
+    <image id="p289l" name="T_Common_Head_Nv_6.png" path="/Images/" exported="true"/>
+    <image id="p289m" name="T_Common_Head_Nv_7.png" path="/Images/" exported="true"/>
+    <image id="p289n" name="T_Common_Head_Nv_8.png" path="/Images/" exported="true"/>
+    <image id="p2899" name="T_Common_Head_Nan_2.png" path="/Images/" exported="true"/>
+    <image id="p289a" name="T_Common_Head_Nan_3.png" path="/Images/" exported="true"/>
+    <image id="p289b" name="T_Common_Head_Nan_4.png" path="/Images/" exported="true"/>
+    <image id="p289c" name="T_Common_Head_Nan_5.png" path="/Images/" exported="true"/>
+    <image id="p289d" name="T_Common_Head_Nan_6.png" path="/Images/" exported="true"/>
+    <image id="p289e" name="T_Common_Head_Nan_7.png" path="/Images/" exported="true"/>
+    <image id="p289f" name="T_Common_Head_Nan_8.png" path="/Images/" exported="true"/>
+    <image id="p289g" name="T_Common_Head_Nv_1.png" path="/Images/" exported="true"/>
+    <component id="kv7nu" name="FC_Common_Head_Item.xml" path="/Components/" exported="true"/>
+    <image id="elkdv" name="Mask.png" path="/Images/"/>
+  </resources>
+  <publish name="" path="../Game/Assets/HotFix/Res/Common/UI" packageCount="2"/>
+</packageDescription>

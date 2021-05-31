@@ -6,7 +6,15 @@ import "enum.proto";
 
 message ReqAuth { string Token = 1; }
 
-message RespAuth { pb_enum.ErrorCode ErrCode = 1; }
+message RespAuth {
+  pb_enum.ErrorCode ErrCode = 1;
+  int64 UID = 2;
+  string NickName = 3;
+  pb_enum.Sex Sex = 4;
+  uint32 Gold = 5;
+  uint32 Diamond = 6;
+  uint32 Lv = 7;
+}
 
 message ReqLobbyInfo {}
 

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitaya", "Pitaya.csproj", "{444a5480-413e-03e9-0821-db004b9e3874}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{a0431b3a-6e27-fb34-197e-1acde9001a0f}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitaya", "Pitaya.csproj", "{444a5480-413e-03e9-0821-db004b9e3874}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{569a85a2-4aab-f951-60bb-1b6fc96e8c70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitaya.Editor", "Pitaya.Editor.csproj", "{36e4dcf4-3388-59d8-b4e2-fe77408324d5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{71e01967-2b57-7768-b821-8a6b33ec3a6c}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pitaya.Editor", "Pitaya.Editor.csproj", "{36e4dcf4-3388-59d8-b4e2-fe77408324d5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,26 +17,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{444a5480-413e-03e9-0821-db004b9e3874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{444a5480-413e-03e9-0821-db004b9e3874}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{444a5480-413e-03e9-0821-db004b9e3874}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{444a5480-413e-03e9-0821-db004b9e3874}.Release|Any CPU.Build.0 = Release|Any CPU
 		{a0431b3a-6e27-fb34-197e-1acde9001a0f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{a0431b3a-6e27-fb34-197e-1acde9001a0f}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{a0431b3a-6e27-fb34-197e-1acde9001a0f}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{a0431b3a-6e27-fb34-197e-1acde9001a0f}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444a5480-413e-03e9-0821-db004b9e3874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444a5480-413e-03e9-0821-db004b9e3874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444a5480-413e-03e9-0821-db004b9e3874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444a5480-413e-03e9-0821-db004b9e3874}.Release|Any CPU.Build.0 = Release|Any CPU
 		{569a85a2-4aab-f951-60bb-1b6fc96e8c70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{569a85a2-4aab-f951-60bb-1b6fc96e8c70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{569a85a2-4aab-f951-60bb-1b6fc96e8c70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{569a85a2-4aab-f951-60bb-1b6fc96e8c70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71e01967-2b57-7768-b821-8a6b33ec3a6c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{71e01967-2b57-7768-b821-8a6b33ec3a6c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71e01967-2b57-7768-b821-8a6b33ec3a6c}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71e01967-2b57-7768-b821-8a6b33ec3a6c}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36e4dcf4-3388-59d8-b4e2-fe77408324d5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

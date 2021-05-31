@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="260,260" mask="n20_elkd">
+  <displayList>
+    <image id="n20_elkd" name="n20" src="elkdv" fileName="Images/Mask.png" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n13_kv7n" name="Head" xy="1,0" size="258,260" url="ui://kv75ch2mp2898" align="center" vAlign="middle" fill="scale">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+</component>

@@ -9,10 +9,10 @@ namespace JackFun.UI
         {
             UIPackage.AddPackage("UI/FP_Common");
             UIPackage.AddPackage("UI/FP_Login_Register");
+            UIPackage.AddPackage("UI/FP_Lobby");
             OpenUI<UILoading>();
             OpenUI<UITips>();
         }
-
 
         public static void OpenUI<T>() where T : UIPanel
         {

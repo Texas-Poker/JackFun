@@ -1,16 +1,14 @@
 package redis_module
 
 import (
-	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/pkg/errors"
+	"server/dao/pojo"
 	"server/dao/redis_helper"
 	"server/system/coroutine"
 )
 
-func (this *RedisModule) UserKey(uid int64) string {
-	return fmt.Sprintf("User[%d]", uid)
-}
+
 
 func (this *RedisModule) SetUserByUId(uid int64, data map[string]string) error {
 	p, err := redis_helper.GetAsyncPipeliner(redis_helper.User, uid)
@@ -19,7 +17,7 @@ func (this *RedisModule) SetUserByUId(uid int64, data map[string]string) error {
 	}
 	var cmds []redis.Cmder
 	for key, value := range data {
-		cmds = append(cmds, redis.NewCmd("HSet", this.UserKey(uid), key, value))
+		cmds = append(cmds, redis.NewCmd("HSet", pojo.UserKey(uid), key, value))
 	}
 	return p.DoCmds(cmds)
 }
@@ -35,7 +33,7 @@ func (this *RedisModule) GetUserByUId(uid int64) (map[string]string, error) {
 	var hash map[string]string
 	err = coroutine.Start(func(co coroutine.ID) error {
 		if err := p.DoCmdWithCallback(
-			redis.NewStringStringMapCmd("HGetAll", this.UserKey(uid)),
+			redis.NewStringStringMapCmd("HGetAll", pojo.UserKey(uid)),
 			func(cmder redis.Cmder) error {
 				cmd := cmder.(*redis.StringStringMapCmd)
 				data, err := cmd.Result()

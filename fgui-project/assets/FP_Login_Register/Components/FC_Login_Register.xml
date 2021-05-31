@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1280,720" designImageLayer="1" bgColor="#ff0000">
-  <controller name="status" pages="0,login,1,regist" selected="0"/>
+  <controller name="status" pages="0,login,1,register" selected="0"/>
   <displayList>
-    <image id="n26_jarj" name="background" src="jarj5" fileName="Images/T_Login_Bg.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="1490,720">
+    <image id="n26_jarj" name="background" src="jarj5" fileName="Images/T_Entry_Login_Bg.png" xy="640,360" pivot="0.5,0.5" anchor="true" size="1490,720">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
     <text id="n0_w7ku" name="n0" xy="554,56" pivot="0.5,0.5" size="180,59" group="n21_ot8r" fontSize="44" color="#ffff00" align="center" vAlign="middle" strokeColor="#000000" text="登录界面">
@@ -21,7 +21,7 @@
     <component id="n13_w7ku" name="BtnRegister" src="w7ku3" fileName="Components/Btn.xml" xy="565,454" group="n15_w7ku">
       <Button title="注册" titleFontSize="30"/>
     </component>
-    <component id="n14_w7ku" name="BtnBackLogin" src="w7ku3" fileName="Components/Btn.xml" xy="565,559" group="n15_w7ku">
+    <component id="n14_w7ku" name="BtnToLogin" src="w7ku3" fileName="Components/Btn.xml" xy="565,559" group="n15_w7ku">
       <Button title="返回" titleFontSize="30"/>
     </component>
     <group id="n15_w7ku" name="n6" xy="565,454" size="160,165" group="n21_ot8r" advanced="true">

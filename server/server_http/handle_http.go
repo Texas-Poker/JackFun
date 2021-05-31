@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"server/dao/pojo"
 	"server/pb/pb_enum"
 	"server/pb/pb_http"
 	"strings"
@@ -71,8 +72,12 @@ func (this *ComponentHttp) register(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			println(err)
 		}
-		id := n.Generate().Int64()
-		this.redisModule.NewRegister(req.Account, req.Password, id)
+		uid := n.Generate().Int64()
+		this.redisModule.NewRegister(req.Account, req.Password, uid)
+
+		//创建新的用户数据
+		pojo.NewUser(uid, req.Account)
+
 		resp.ErrCode = pb_enum.ErrorCode_OK
 	}
 

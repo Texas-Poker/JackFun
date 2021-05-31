@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="4uqdhv2c">
+  <resources>
+    <component id="qxde1" name="FC_Lobby.xml" path="/Component/" exported="true"/>
+    <image id="qxde2" name="Bg.png" path="/Image/" scale="9grid" scale9grid="25,25,50,50"/>
+    <component id="qf8u3" name="Btn_Modify_Name.xml" path="/Component/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

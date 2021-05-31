@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JackFun.UI;
 using Pitaya;
 using UnityEngine;
 
@@ -51,9 +52,11 @@ namespace JackFun
                     if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
                     {
                         Debug.LogError("auth error, =>" + resp.ErrCode);
+                        UITips.Open(ErrorCodeUtil.ToString(resp.ErrCode));
+                        return;
                     }
 
-                    Debug.Log("call auth, resp=" + resp);
+                    Debug.Log("call auth success, resp=" + resp);
                 },
                 (resp) => { });
         }

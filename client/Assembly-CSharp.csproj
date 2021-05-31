@@ -54,17 +54,20 @@
   <ItemGroup>
      <Compile Include="Assets\Scrpit\JackFun\NetPitaya.cs" />
      <Compile Include="Assets\Scrpit\JackFun\Session.cs" />
+     <Compile Include="Assets\Scrpit\Lobby\UILobby.cs" />
+     <Compile Include="Assets\Scrpit\Lobby\LobbyController.cs" />
      <Compile Include="Assets\Pb\Game.cs" />
+     <Compile Include="Assets\Scrpit\JackFun\ErrorCodeUtil.cs" />
      <Compile Include="Assets\Pb\Http.cs" />
      <Compile Include="Assets\Scrpit\JackFun\JackFunUrl.cs" />
      <Compile Include="Assets\Scrpit\JackFun\HttpManager.cs" />
+     <Compile Include="Assets\Scrpit\UI\UILoading.cs" />
+     <Compile Include="Assets\Scrpit\UI\UIUtil.cs" />
      <Compile Include="Assets\Pb\Enum.cs" />
+     <Compile Include="Assets\Scrpit\Login\UILogin.cs" />
      <Compile Include="Assets\Pb\Lobby.cs" />
      <Compile Include="Assets\Scrpit\Main.cs" />
-     <Compile Include="Assets\Scrpit\UI\UIUtil.cs" />
-     <Compile Include="Assets\Scrpit\UI\UILoading.cs" />
      <Compile Include="Assets\Scrpit\UI\UITips.cs" />
-     <Compile Include="Assets\Scrpit\Login\UILogin.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

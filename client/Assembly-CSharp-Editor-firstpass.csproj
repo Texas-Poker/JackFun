@@ -52,14 +52,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
      <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIContentScalerEditor.cs" />
      <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\DisplayObjectEditor.cs" />
-     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
      <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\EditorToolSet.cs" />
      <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
-     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
+     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
      <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
+     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
+     <Compile Include="Assets\Plugins\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

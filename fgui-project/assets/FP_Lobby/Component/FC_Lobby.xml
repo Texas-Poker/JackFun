@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,720">
+  <displayList>
+    <image id="n0_qxde" name="n0" src="qxde2" fileName="Image/Bg.png" xy="0,0" size="1280,720" color="#9966cc"/>
+    <component id="n1_qf8u" name="Head_Icon" src="kv7nu" fileName="Components/FC_Common_Head_Item.xml" pkg="kv75ch2m" xy="43,31" size="111,111" aspect="true"/>
+    <text id="n2_qf8u" name="Label_NickName" xy="203,55" size="158,32" fontSize="22" color="#ffffff" text="玩家名字七个字"/>
+    <text id="n4_qf8u" name="Label_Gold" xy="421,56" size="142,32" fontSize="22" color="#ffffff" text="金币:2786976"/>
+    <text id="n5_qf8u" name="Label_Diamond" xy="644,56" size="142,32" fontSize="22" color="#ffffff" text="钻石:2786976"/>
+  </displayList>
+</component>
