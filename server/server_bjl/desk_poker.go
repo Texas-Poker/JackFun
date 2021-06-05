@@ -61,6 +61,7 @@ func (this *deskPoker) TotalZhuangScore() int {
 	return totalScore
 }
 
+//IsXianBuPai 闲是否补牌
 func (this *deskPoker) IsXianBuPai() (bool, *poker.Poker) {
 	if this.TotalXianScore() <= 7 {
 		return true, this.desk.allPoker.FaPai()
@@ -68,6 +69,7 @@ func (this *deskPoker) IsXianBuPai() (bool, *poker.Poker) {
 	return false, nil
 }
 
+//IsZhuangBuPai 庄是否补牌
 func (this *deskPoker) IsZhuangBuPai(isXianBuPai bool) (bool, *poker.Poker) {
 	zhuangScore := 0
 	zhuangScore += this.zhuang1.Score + this.zhuang2.Score

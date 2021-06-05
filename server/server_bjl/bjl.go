@@ -8,11 +8,9 @@ import (
 	"github.com/topfreegames/pitaya/component"
 	"github.com/topfreegames/pitaya/config"
 	"github.com/topfreegames/pitaya/groups"
-	"math/rand"
 	"server/dao/pojo"
 	"server/pb/pb_bjl"
 	"server/pb/pb_enum"
-	"time"
 )
 
 type (
@@ -61,10 +59,10 @@ func (this *Bjl) Init() {
 }
 
 func (this *Bjl) AfterInit() {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	randomTime := r.Int63n(5)
-	for _, desk := range this.desks {
-		desk.Start(randomTime)
+	//r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	//randomTime := r.Int63n(5)
+	for i, desk := range this.desks {
+		desk.Start(int64(i))
 	}
 }
 
@@ -107,7 +105,7 @@ func (this *Bjl) CallJoinDesk(ctx context.Context, req *pb_bjl.ReqJoinDesk) (*pb
 	u.Bjl.AtDeskID.Set(targetDesk.deskID)
 	resp := new(pb_bjl.RespJoinDesk)
 	resp.GameStatus = targetDesk.deskFSM.Current()
-	resp.BetInfos = targetDesk.roundBetInfo
+	resp.BetInfos = targetDesk.curRoundBetInfo
 	return resp, nil
 }
 
