@@ -15,6 +15,8 @@ type (
 		t.Root
 		UID  t.Int64
 		Char CharInfo
+		Lobby LobbyInfo
+		Bjl BjlInfo
 	}
 
 	CharInfo struct {
@@ -25,12 +27,21 @@ type (
 		Lv       t.Uint32
 		Gold     t.Uint32
 		Diamond  t.Uint32
+		Avatar   t.String
+	}
+
+	LobbyInfo struct {
+		AtRoomID t.Uint
+	}
+
+	BjlInfo struct {
+		AtDeskID t.String
 	}
 )
 
 func NewUser(uid int64, account string) *User {
 	u := new(User)
-	u.Load(u,nil)
+	u.Load(u, nil)
 	u.UID.Set(uid)
 	u.Char.Diamond.Set(1000)
 	u.Char.NickName.Set(fmt.Sprintf("玩家%s", account))
@@ -41,7 +52,7 @@ func NewUser(uid int64, account string) *User {
 	return u
 }
 
-func  UserKey(uid int64) string {
+func UserKey(uid int64) string {
 	return fmt.Sprintf("user[%d]", uid)
 }
 

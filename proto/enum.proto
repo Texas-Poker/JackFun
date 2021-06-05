@@ -12,8 +12,8 @@ enum ErrorCode {
   RegisterAccountExit = 5;    //注册账号已存在
   AuthFailed = 6;             //授权失败（先登录再进行长连接）
   RoomUnExistent = 7;         //房间不存在
-  RoomPasswordError = 8;      //房间密码错误
-  UserAlreadyInRoom = 9;      //玩家已在房间中，不能再创建房间
+  DeskUnExistent = 8;         //桌子不存在
+  DeskPlayerFull = 9;         //桌子上玩家已满
 }
 
 enum Sex {

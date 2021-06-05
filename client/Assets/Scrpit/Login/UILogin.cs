@@ -1,5 +1,6 @@
 using System;
 using FairyGUI;
+using JackFun.Lobby;
 
 namespace JackFun.UI
 {
@@ -67,7 +68,7 @@ namespace JackFun.UI
                 return;
             }
 
-            HttpManager.Login(_inputAccount.text, _inputPassword.text);
+            HttpManager.Login(_inputAccount.text, _inputPassword.text,LoginController.CallAuth);
         }
 
         private void ONBtnToRegisterClick()

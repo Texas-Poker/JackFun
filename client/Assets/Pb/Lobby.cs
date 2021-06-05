@@ -25,20 +25,21 @@ namespace Pb.Lobby {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cgtsb2JieS5wcm90bxIIcGJfbG9iYnkaCmVudW0ucHJvdG8iGAoHUmVxQXV0",
-            "aBINCgVUb2tlbhgBIAEoCSKUAQoIUmVzcEF1dGgSIwoHRXJyQ29kZRgBIAEo",
-            "DjISLnBiX2VudW0uRXJyb3JDb2RlEgsKA1VJRBgCIAEoAxIQCghOaWNrTmFt",
-            "ZRgDIAEoCRIZCgNTZXgYBCABKA4yDC5wYl9lbnVtLlNleBIMCgRHb2xkGAUg",
-            "ASgNEg8KB0RpYW1vbmQYBiABKA0SCgoCTHYYByABKA0iDgoMUmVxTG9iYnlJ",
-            "bmZvIjQKDVJlc3BMb2JieUluZm8SIwoHRXJyQ29kZRgBIAEoDjISLnBiX2Vu",
-            "dW0uRXJyb3JDb2RlQh9aEnNlcnZlci9wYi9wYl9sb2JieaoCCFBiLkxvYmJ5",
-            "YgZwcm90bzM="));
+            "aBINCgVUb2tlbhgBIAEoCSJ/CghSZXNwQXV0aBILCgNVSUQYASABKAMSEAoI",
+            "Tmlja05hbWUYAiABKAkSGQoDU2V4GAMgASgOMgwucGJfZW51bS5TZXgSDAoE",
+            "R29sZBgEIAEoDRIPCgdEaWFtb25kGAUgASgNEgoKAkx2GAYgASgNEg4KBkF2",
+            "YXRhchgHIAEoCSIOCgxSZXFMb2JieUluZm8igAEKDVJlc3BMb2JieUluZm8S",
+            "MAoFSW5mb3MYASADKAsyIS5wYl9sb2JieS5SZXNwTG9iYnlJbmZvLkxvYmJ5",
+            "SW5mbxo9CglMb2JieUluZm8SDgoGR2FtZUlkGAEgASgNEhAKCEdhbWVOYW1l",
+            "GAIgASgJEg4KBklzT3BlbhgDIAEoCEIfWhJzZXJ2ZXIvcGIvcGJfbG9iYnmq",
+            "AghQYi5Mb2JieWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Pb.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.ReqAuth), global::Pb.Lobby.ReqAuth.Parser, new[]{ "Token" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespAuth), global::Pb.Lobby.RespAuth.Parser, new[]{ "ErrCode", "UID", "NickName", "Sex", "Gold", "Diamond", "Lv" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespAuth), global::Pb.Lobby.RespAuth.Parser, new[]{ "UID", "NickName", "Sex", "Gold", "Diamond", "Lv", "Avatar" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.ReqLobbyInfo), global::Pb.Lobby.ReqLobbyInfo.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespLobbyInfo), global::Pb.Lobby.RespLobbyInfo.Parser, new[]{ "ErrCode" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespLobbyInfo), global::Pb.Lobby.RespLobbyInfo.Parser, new[]{ "Infos" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo), global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo.Parser, new[]{ "GameId", "GameName", "IsOpen" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -246,13 +247,13 @@ namespace Pb.Lobby {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RespAuth(RespAuth other) : this() {
-      errCode_ = other.errCode_;
       uID_ = other.uID_;
       nickName_ = other.nickName_;
       sex_ = other.sex_;
       gold_ = other.gold_;
       diamond_ = other.diamond_;
       lv_ = other.lv_;
+      avatar_ = other.avatar_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -261,20 +262,12 @@ namespace Pb.Lobby {
       return new RespAuth(this);
     }
 
-    /// <summary>Field number for the "ErrCode" field.</summary>
-    public const int ErrCodeFieldNumber = 1;
-    private global::Pb.Enum.ErrorCode errCode_ = global::Pb.Enum.ErrorCode.Default;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Pb.Enum.ErrorCode ErrCode {
-      get { return errCode_; }
-      set {
-        errCode_ = value;
-      }
-    }
-
     /// <summary>Field number for the "UID" field.</summary>
-    public const int UIDFieldNumber = 2;
+    public const int UIDFieldNumber = 1;
     private long uID_;
+    /// <summary>
+    ///用户ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long UID {
       get { return uID_; }
@@ -284,8 +277,11 @@ namespace Pb.Lobby {
     }
 
     /// <summary>Field number for the "NickName" field.</summary>
-    public const int NickNameFieldNumber = 3;
+    public const int NickNameFieldNumber = 2;
     private string nickName_ = "";
+    /// <summary>
+    ///昵称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string NickName {
       get { return nickName_; }
@@ -295,8 +291,11 @@ namespace Pb.Lobby {
     }
 
     /// <summary>Field number for the "Sex" field.</summary>
-    public const int SexFieldNumber = 4;
+    public const int SexFieldNumber = 3;
     private global::Pb.Enum.Sex sex_ = global::Pb.Enum.Sex.Unknow;
+    /// <summary>
+    ///性别
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Pb.Enum.Sex Sex {
       get { return sex_; }
@@ -306,8 +305,11 @@ namespace Pb.Lobby {
     }
 
     /// <summary>Field number for the "Gold" field.</summary>
-    public const int GoldFieldNumber = 5;
+    public const int GoldFieldNumber = 4;
     private uint gold_;
+    /// <summary>
+    ///金币
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Gold {
       get { return gold_; }
@@ -317,8 +319,11 @@ namespace Pb.Lobby {
     }
 
     /// <summary>Field number for the "Diamond" field.</summary>
-    public const int DiamondFieldNumber = 6;
+    public const int DiamondFieldNumber = 5;
     private uint diamond_;
+    /// <summary>
+    ///钻石
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Diamond {
       get { return diamond_; }
@@ -328,13 +333,30 @@ namespace Pb.Lobby {
     }
 
     /// <summary>Field number for the "Lv" field.</summary>
-    public const int LvFieldNumber = 7;
+    public const int LvFieldNumber = 6;
     private uint lv_;
+    /// <summary>
+    ///等级
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Lv {
       get { return lv_; }
       set {
         lv_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Avatar" field.</summary>
+    public const int AvatarFieldNumber = 7;
+    private string avatar_ = "";
+    /// <summary>
+    ///头像
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Avatar {
+      get { return avatar_; }
+      set {
+        avatar_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -351,26 +373,26 @@ namespace Pb.Lobby {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ErrCode != other.ErrCode) return false;
       if (UID != other.UID) return false;
       if (NickName != other.NickName) return false;
       if (Sex != other.Sex) return false;
       if (Gold != other.Gold) return false;
       if (Diamond != other.Diamond) return false;
       if (Lv != other.Lv) return false;
+      if (Avatar != other.Avatar) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) hash ^= ErrCode.GetHashCode();
       if (UID != 0L) hash ^= UID.GetHashCode();
       if (NickName.Length != 0) hash ^= NickName.GetHashCode();
       if (Sex != global::Pb.Enum.Sex.Unknow) hash ^= Sex.GetHashCode();
       if (Gold != 0) hash ^= Gold.GetHashCode();
       if (Diamond != 0) hash ^= Diamond.GetHashCode();
       if (Lv != 0) hash ^= Lv.GetHashCode();
+      if (Avatar.Length != 0) hash ^= Avatar.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -387,33 +409,33 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) ErrCode);
-      }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(8);
         output.WriteInt64(UID);
       }
       if (NickName.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(NickName);
       }
       if (Sex != global::Pb.Enum.Sex.Unknow) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(24);
         output.WriteEnum((int) Sex);
       }
       if (Gold != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(32);
         output.WriteUInt32(Gold);
       }
       if (Diamond != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(40);
         output.WriteUInt32(Diamond);
       }
       if (Lv != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(48);
         output.WriteUInt32(Lv);
+      }
+      if (Avatar.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Avatar);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -424,33 +446,33 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) ErrCode);
-      }
       if (UID != 0L) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(8);
         output.WriteInt64(UID);
       }
       if (NickName.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(NickName);
       }
       if (Sex != global::Pb.Enum.Sex.Unknow) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(24);
         output.WriteEnum((int) Sex);
       }
       if (Gold != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(32);
         output.WriteUInt32(Gold);
       }
       if (Diamond != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(40);
         output.WriteUInt32(Diamond);
       }
       if (Lv != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(48);
         output.WriteUInt32(Lv);
+      }
+      if (Avatar.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Avatar);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -461,9 +483,6 @@ namespace Pb.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ErrCode);
-      }
       if (UID != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(UID);
       }
@@ -482,6 +501,9 @@ namespace Pb.Lobby {
       if (Lv != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Lv);
       }
+      if (Avatar.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Avatar);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -492,9 +514,6 @@ namespace Pb.Lobby {
     public void MergeFrom(RespAuth other) {
       if (other == null) {
         return;
-      }
-      if (other.ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        ErrCode = other.ErrCode;
       }
       if (other.UID != 0L) {
         UID = other.UID;
@@ -514,6 +533,9 @@ namespace Pb.Lobby {
       if (other.Lv != 0) {
         Lv = other.Lv;
       }
+      if (other.Avatar.Length != 0) {
+        Avatar = other.Avatar;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -529,31 +551,31 @@ namespace Pb.Lobby {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
-            break;
-          }
-          case 16: {
             UID = input.ReadInt64();
             break;
           }
-          case 26: {
+          case 18: {
             NickName = input.ReadString();
             break;
           }
-          case 32: {
+          case 24: {
             Sex = (global::Pb.Enum.Sex) input.ReadEnum();
             break;
           }
-          case 40: {
+          case 32: {
             Gold = input.ReadUInt32();
             break;
           }
-          case 48: {
+          case 40: {
             Diamond = input.ReadUInt32();
             break;
           }
-          case 56: {
+          case 48: {
             Lv = input.ReadUInt32();
+            break;
+          }
+          case 58: {
+            Avatar = input.ReadString();
             break;
           }
         }
@@ -571,31 +593,31 @@ namespace Pb.Lobby {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
-            break;
-          }
-          case 16: {
             UID = input.ReadInt64();
             break;
           }
-          case 26: {
+          case 18: {
             NickName = input.ReadString();
             break;
           }
-          case 32: {
+          case 24: {
             Sex = (global::Pb.Enum.Sex) input.ReadEnum();
             break;
           }
-          case 40: {
+          case 32: {
             Gold = input.ReadUInt32();
             break;
           }
-          case 48: {
+          case 40: {
             Diamond = input.ReadUInt32();
             break;
           }
-          case 56: {
+          case 48: {
             Lv = input.ReadUInt32();
+            break;
+          }
+          case 58: {
+            Avatar = input.ReadString();
             break;
           }
         }
@@ -770,7 +792,7 @@ namespace Pb.Lobby {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RespLobbyInfo(RespLobbyInfo other) : this() {
-      errCode_ = other.errCode_;
+      infos_ = other.infos_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -779,15 +801,14 @@ namespace Pb.Lobby {
       return new RespLobbyInfo(this);
     }
 
-    /// <summary>Field number for the "ErrCode" field.</summary>
-    public const int ErrCodeFieldNumber = 1;
-    private global::Pb.Enum.ErrorCode errCode_ = global::Pb.Enum.ErrorCode.Default;
+    /// <summary>Field number for the "Infos" field.</summary>
+    public const int InfosFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo> _repeated_infos_codec
+        = pb::FieldCodec.ForMessage(10, global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo.Parser);
+    private readonly pbc::RepeatedField<global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo> infos_ = new pbc::RepeatedField<global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Pb.Enum.ErrorCode ErrCode {
-      get { return errCode_; }
-      set {
-        errCode_ = value;
-      }
+    public pbc::RepeatedField<global::Pb.Lobby.RespLobbyInfo.Types.LobbyInfo> Infos {
+      get { return infos_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -803,14 +824,14 @@ namespace Pb.Lobby {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ErrCode != other.ErrCode) return false;
+      if(!infos_.Equals(other.infos_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) hash ^= ErrCode.GetHashCode();
+      hash ^= infos_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -827,10 +848,7 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) ErrCode);
-      }
+      infos_.WriteTo(output, _repeated_infos_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -840,10 +858,7 @@ namespace Pb.Lobby {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) ErrCode);
-      }
+      infos_.WriteTo(ref output, _repeated_infos_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -853,9 +868,7 @@ namespace Pb.Lobby {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ErrCode);
-      }
+      size += infos_.CalculateSize(_repeated_infos_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -867,9 +880,7 @@ namespace Pb.Lobby {
       if (other == null) {
         return;
       }
-      if (other.ErrCode != global::Pb.Enum.ErrorCode.Default) {
-        ErrCode = other.ErrCode;
-      }
+      infos_.Add(other.infos_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -884,8 +895,8 @@ namespace Pb.Lobby {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
+          case 10: {
+            infos_.AddEntriesFrom(input, _repeated_infos_codec);
             break;
           }
         }
@@ -902,14 +913,274 @@ namespace Pb.Lobby {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            ErrCode = (global::Pb.Enum.ErrorCode) input.ReadEnum();
+          case 10: {
+            infos_.AddEntriesFrom(ref input, _repeated_infos_codec);
             break;
           }
         }
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the RespLobbyInfo message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public sealed partial class LobbyInfo : pb::IMessage<LobbyInfo>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<LobbyInfo> _parser = new pb::MessageParser<LobbyInfo>(() => new LobbyInfo());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<LobbyInfo> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Pb.Lobby.RespLobbyInfo.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public LobbyInfo() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public LobbyInfo(LobbyInfo other) : this() {
+          gameId_ = other.gameId_;
+          gameName_ = other.gameName_;
+          isOpen_ = other.isOpen_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public LobbyInfo Clone() {
+          return new LobbyInfo(this);
+        }
+
+        /// <summary>Field number for the "GameId" field.</summary>
+        public const int GameIdFieldNumber = 1;
+        private uint gameId_;
+        /// <summary>
+        ///游戏Id
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint GameId {
+          get { return gameId_; }
+          set {
+            gameId_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "GameName" field.</summary>
+        public const int GameNameFieldNumber = 2;
+        private string gameName_ = "";
+        /// <summary>
+        ///游戏名称
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string GameName {
+          get { return gameName_; }
+          set {
+            gameName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "IsOpen" field.</summary>
+        public const int IsOpenFieldNumber = 3;
+        private bool isOpen_;
+        /// <summary>
+        ///该游戏是否已开启
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool IsOpen {
+          get { return isOpen_; }
+          set {
+            isOpen_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other) {
+          return Equals(other as LobbyInfo);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(LobbyInfo other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (GameId != other.GameId) return false;
+          if (GameName != other.GameName) return false;
+          if (IsOpen != other.IsOpen) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (GameId != 0) hash ^= GameId.GetHashCode();
+          if (GameName.Length != 0) hash ^= GameName.GetHashCode();
+          if (IsOpen != false) hash ^= IsOpen.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (GameId != 0) {
+            output.WriteRawTag(8);
+            output.WriteUInt32(GameId);
+          }
+          if (GameName.Length != 0) {
+            output.WriteRawTag(18);
+            output.WriteString(GameName);
+          }
+          if (IsOpen != false) {
+            output.WriteRawTag(24);
+            output.WriteBool(IsOpen);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (GameId != 0) {
+            output.WriteRawTag(8);
+            output.WriteUInt32(GameId);
+          }
+          if (GameName.Length != 0) {
+            output.WriteRawTag(18);
+            output.WriteString(GameName);
+          }
+          if (IsOpen != false) {
+            output.WriteRawTag(24);
+            output.WriteBool(IsOpen);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize() {
+          int size = 0;
+          if (GameId != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameId);
+          }
+          if (GameName.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(GameName);
+          }
+          if (IsOpen != false) {
+            size += 1 + 1;
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(LobbyInfo other) {
+          if (other == null) {
+            return;
+          }
+          if (other.GameId != 0) {
+            GameId = other.GameId;
+          }
+          if (other.GameName.Length != 0) {
+            GameName = other.GameName;
+          }
+          if (other.IsOpen != false) {
+            IsOpen = other.IsOpen;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 8: {
+                GameId = input.ReadUInt32();
+                break;
+              }
+              case 18: {
+                GameName = input.ReadString();
+                break;
+              }
+              case 24: {
+                IsOpen = input.ReadBool();
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 8: {
+                GameId = input.ReadUInt32();
+                break;
+              }
+              case 18: {
+                GameName = input.ReadString();
+                break;
+              }
+              case 24: {
+                IsOpen = input.ReadBool();
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
 
   }
 

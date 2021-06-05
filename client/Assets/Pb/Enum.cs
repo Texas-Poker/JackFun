@@ -24,13 +24,13 @@ namespace Pb.Enum {
     static EnumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgplbnVtLnByb3RvEgdwYl9lbnVtKs8BCglFcnJvckNvZGUSCwoHRGVmYXVs",
+            "CgplbnVtLnByb3RvEgdwYl9lbnVtKskBCglFcnJvckNvZGUSCwoHRGVmYXVs",
             "dBAAEgYKAk9LEAESDgoKRW50cnlFcnJvchACEhoKFkxvZ2luQWNjb3VudFVu",
             "RXhpeHRlbnQQAxIWChJMb2dpblBhc3N3b3JkRXJyb3IQBBIXChNSZWdpc3Rl",
             "ckFjY291bnRFeGl0EAUSDgoKQXV0aEZhaWxlZBAGEhIKDlJvb21VbkV4aXN0",
-            "ZW50EAcSFQoRUm9vbVBhc3N3b3JkRXJyb3IQCBIVChFVc2VyQWxyZWFkeUlu",
-            "Um9vbRAJKicKA1NleBIKCgZVbmtub3cQABIICgRNYWxlEAESCgoGRmVtYWxl",
-            "EAJCHVoRc2VydmVyL3BiL3BiX2VudW2qAgdQYi5FbnVtYgZwcm90bzM="));
+            "ZW50EAcSEgoORGVza1VuRXhpc3RlbnQQCBISCg5EZXNrUGxheWVyRnVsbBAJ",
+            "KicKA1NleBIKCgZVbmtub3cQABIICgRNYWxlEAESCgoGRmVtYWxlEAJCHVoR",
+            "c2VydmVyL3BiL3BiX2VudW2qAgdQYi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Pb.Enum.ErrorCode), typeof(global::Pb.Enum.Sex), }, null, null));
@@ -73,13 +73,13 @@ namespace Pb.Enum {
     /// </summary>
     [pbr::OriginalName("RoomUnExistent")] RoomUnExistent = 7,
     /// <summary>
-    ///房间密码错误
+    ///桌子不存在
     /// </summary>
-    [pbr::OriginalName("RoomPasswordError")] RoomPasswordError = 8,
+    [pbr::OriginalName("DeskUnExistent")] DeskUnExistent = 8,
     /// <summary>
-    ///玩家已在房间中，不能再创建房间
+    ///桌子上玩家已满
     /// </summary>
-    [pbr::OriginalName("UserAlreadyInRoom")] UserAlreadyInRoom = 9,
+    [pbr::OriginalName("DeskPlayerFull")] DeskPlayerFull = 9,
   }
 
   public enum Sex {

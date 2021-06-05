@@ -13,6 +13,7 @@ import (
 	"github.com/topfreegames/pitaya/serialize/protobuf"
 	"server/dao/redis_module"
 	"server/jcak_constants"
+	"server/server_bjl"
 	"server/server_http"
 	"server/server_lobby"
 )
@@ -21,6 +22,12 @@ func configureLobby() {
 	componentLobby := server_lobby.NewComponentLobby()
 	pitaya.Register(componentLobby, component.WithName("ComponentLobby"))
 	pitaya.RegisterRemote(componentLobby, component.WithName("ComponentLobby"))
+}
+
+func configureBjl()  {
+	componentLobby := server_bjl.NewComponentBjl()
+	pitaya.Register(componentLobby, component.WithName("ComponentBjl"))
+	pitaya.RegisterRemote(componentLobby, component.WithName("ComponentBjl"))
 }
 
 func configureHttpSever() {
@@ -48,8 +55,8 @@ func main() {
 	case jcak_constants.SvTypeLobby:
 		configureLobby()
 		break
-	case jcak_constants.SvTypeGame:
-		//configureGame()
+	case jcak_constants.SvTypeBjl:
+		configureBjl()
 		break
 	case jcak_constants.SvTypeWorld:
 		//configureWorld()

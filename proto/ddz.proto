@@ -1,0 +1,27 @@
+syntax = "proto3";
+package pb_ddz;
+option go_package = "server/pb/pb_ddz"; //生成go时的package
+option csharp_namespace = "Pb.Ddz";     //给c#提供的选项
+
+//游戏场
+enum DdzLevel {
+  Primary = 0; //初级场
+  Middle = 1;  //中级场
+  High = 2;    //高级场
+  King = 3;    //至尊场
+}
+
+message ReqJoinRoom {}
+
+message RespJoinRoom {
+  message DeskInfo {
+    uint32 DeskId = 1;
+    uint32 Count = 2;
+  }
+  repeated DeskInfo info = 1;
+}
+
+message SyncPlayerJoinRoom {
+  int64 PlayerId = 1;
+  string NickName = 2;
+}

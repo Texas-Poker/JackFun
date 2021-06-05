@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using JackFun.UI;
+using Google.Protobuf;
 using Pitaya;
 using UnityEngine;
 
@@ -9,12 +10,9 @@ namespace JackFun
     {
         private static IPitayaClient _client;
 
-
         public static void Init()
         {
             _client = new PitayaClient();
-
-
             _client.NetWorkStateChangedEvent += (ev, error) =>
             {
                 if (ev == PitayaNetWorkState.Connected)
@@ -36,29 +34,21 @@ namespace JackFun
 
         private static void OnConnected()
         {
-            CallAuth();
+            Debug.Log("Connect " + JackFunUrl.TcpHost + ":" + JackFunUrl.TcpPort + ",success");
         }
 
-        private static void CallAuth()
+        public static void Call<TResp>(string route, IMessage req, Action<TResp> respAction, Action<PitayaError> errorAction = null)
         {
-            var req = new Pb.Lobby.ReqAuth()
-            {
-                Token = Session.Token
-            };
-            Debug.Log("CallAuth ");
-            _client.Request<Pb.Lobby.RespAuth>("ServerLobby.ComponentLobby.ReqAuth", req,
-                (resp) =>
+            _client.Request(route, req,
+                (TResp resp) =>
                 {
-                    if (resp.ErrCode != Pb.Enum.ErrorCode.Ok)
-                    {
-                        Debug.LogError("auth error, =>" + resp.ErrCode);
-                        UITips.Open(ErrorCodeUtil.ToString(resp.ErrCode));
-                        return;
-                    }
-
-                    Debug.Log("call auth success, resp=" + resp);
-                },
-                (resp) => { });
+                    Debug.Log("call " + route + ",success, resp=" + resp);
+                    respAction?.Invoke(resp);
+                }, (err) =>
+                {
+                    Debug.LogError(err.Code);
+                    errorAction?.Invoke(err);
+                });
         }
 
         public static void Release()

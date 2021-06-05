@@ -7,15 +7,30 @@ import "enum.proto";
 message ReqAuth { string Token = 1; }
 
 message RespAuth {
-  pb_enum.ErrorCode ErrCode = 1;
-  int64 UID = 2;
-  string NickName = 3;
-  pb_enum.Sex Sex = 4;
-  uint32 Gold = 5;
-  uint32 Diamond = 6;
-  uint32 Lv = 7;
+  int64 UID = 1;       //用户ID
+  string NickName = 2; //昵称
+  pb_enum.Sex Sex = 3; //性别
+  uint32 Gold = 4;     //金币
+  uint32 Diamond = 5;  //钻石
+  uint32 Lv = 6;       //等级
+  string Avatar = 7;   //头像
 }
 
 message ReqLobbyInfo {}
 
-message RespLobbyInfo { pb_enum.ErrorCode ErrCode = 1; }
+message RespLobbyInfo {
+  message LobbyInfo {
+    uint32 GameId = 1;   //游戏Id
+    string GameName = 2; //游戏名称
+    bool IsOpen = 3;     //该游戏是否已开启
+  }
+  repeated LobbyInfo Infos = 1;
+}
+
+// message ReqGameInfo {
+//   message RoomInfo {
+//     pb_enum.GameLevel GameLv = 1;
+//     repeated uint32 RoomId = 2;
+//   }
+//   repeated RoomInfo Info = 1;
+// }

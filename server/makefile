@@ -9,6 +9,9 @@ run_server_lobby:
 run_server_http:
 	@go run main.go --port=8088 --type=ServerHttp --frontend=false
 
+run_server_bjl:
+	@go run main.go --port=3252 --type=ServerBjl --frontend=false
+
 ## 编译protobuf
 build_proto_go:
 	@echo "step1:先清掉pb文件夹"

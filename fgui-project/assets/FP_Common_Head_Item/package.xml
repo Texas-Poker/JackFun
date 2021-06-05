@@ -20,5 +20,5 @@
     <component id="kv7nu" name="FC_Common_Head_Item.xml" path="/Components/" exported="true"/>
     <image id="elkdv" name="Mask.png" path="/Images/"/>
   </resources>
-  <publish name="" path="../Game/Assets/HotFix/Res/Common/UI" packageCount="2"/>
+  <publish name=""/>
 </packageDescription>

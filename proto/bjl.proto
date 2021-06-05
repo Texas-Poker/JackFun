@@ -1,0 +1,84 @@
+syntax = "proto3";
+package pb_bjl;
+option go_package = "server/pb/pb_bjl"; //生成go时的package
+option csharp_namespace = "Pb.Bjl";     //给c#提供的选项
+
+enum BjlLevel {
+  Primary = 0; //初级场
+  Middle = 1;  //中级场
+  High = 2;    //高级场
+  King = 3;    //至尊场
+}
+
+message ReqJoinRoom {}
+
+message RespJoinRoom {
+  message DeskInfo {
+    BjlLevel Level = 1;
+    string DeskId = 2;
+    uint32 PlayerCount = 3;
+  }
+  repeated DeskInfo info = 1;
+}
+
+message ReqJoinDesk { string DeskId = 1; }
+
+message RespJoinDesk {
+  string GameStatus = 1;         //当前房间的状态
+  repeated BetInfo BetInfos = 2; //桌子上下注信息
+}
+
+//下注区域
+enum EnumBetArea {
+  AreaXian = 0;
+  AreaZhuang = 1;
+  AreaHe = 2;
+  AreaXianDui = 3;
+  AreaZhuangDui = 4;
+}
+
+message BetInfo {
+  int64 UID = 1;        //下注的人
+  EnumBetArea Area = 2; //下注区域
+  uint32 Count = 3;     //区域内下注总额
+}
+
+//状态机变化
+message BroadcastStatusChange {
+  string GameStatus = 1; //状态变化
+}
+
+//同步玩家下注
+message BroadcastPlayerBet {
+  BetInfo Info = 1; //下注信息
+}
+
+//玩家自己下注
+message NotifyBet {
+  EnumBetArea Area = 1; //下注区域
+  uint32 Count = 2;     //区域内下注总额
+}
+
+//广播桌子上牌
+message BroadcastPokerShow {
+  repeated int32 Xian = 1;   //闲区域的扑克牌id
+  repeated int32 Zhuang = 2; //庄区域的扑克牌id
+}
+
+enum EnumWinType {
+  Xian = 0;   //闲赢
+  Zhuang = 1; //庄赢
+  He = 2;     //和
+}
+
+message Result {
+  EnumWinType WinType = 1;
+  bool IsXianDui = 2;
+  bool IsZhuangDui = 3;
+}
+
+message BroadcastSettle {
+  Result Result = 1;     //结算结果
+  uint32 Gold = 2;       //每个玩家自己的钱的总量
+  uint32 GoldChange = 3; //每个玩家自己的钱的增量
+}
